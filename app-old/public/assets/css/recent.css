@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+}
+
+:root{
+    --background-recent: rgb(50,50,50)
+}
+
+
+.header{
+    background-color: darkgrey;
+}
+
+@media only screen and (max-height: 500px) and (max-width: 500px){
+
+}
+
+
+/**si l'écran est inférieur à 500px on affichera les icones en ligne
+ */
+@media only screen and (min-width: 500px){
+    .recent-add-container{
+        background-color: #85144B;
+        z-index: -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .recent-add__ {
+        display: grid;
+        grid-template-rows: 15% 1fr;
+
+    }
+        @media only screen and (max-width: 680px ){
+            .recent-header{
+                font-size: 2.5vw;
+                padding: 2% 7% 2% 7%;
+            }
+        }
+        @media only screen and (min-width: 1200px ){
+            .recent-header{
+                font-size: 1.3rem;
+
+
+            }
+        }
+        @media only screen and (min-width: 680px ) {
+            .recent-header{
+                padding: 2% 5% 2% 5%;
+            }
+        }
+
+
+
+        .recent-header {
+
+
+            color: whitesmoke;
+            min-height: 40px;
+            max-height: 60px;
+
+            background-color: var(--background-recent)
+        }
+
+
+        .grid-recent{
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            background-color: var(--background-recent);
+
+
+        }
+
+        .grid-recent-element{
+            width: 10vw;
+            background-image: url("../Logo/leshautify-removebg-preview.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border-radius: 6px;
+
+            border-radius: 10px;
+            background-color: #323232;
+            box-shadow:  20px 20px 60px #2b2b2b,
+            -20px -20px 60px #3a3a3a;
+        }
+
+}
+
+
+
+
+

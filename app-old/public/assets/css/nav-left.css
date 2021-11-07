@@ -1,0 +1,253 @@
+* {
+    font-family: Helvetica, Arial, sans-serif;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+:root{
+    --background-nav-left: rgb(38,38,38);
+    --background-nav-2: #c0c0c0;
+    --transparent: rgba(255,255,255,0)
+}
+
+
+
+    #add-playlist__section{
+/*        background-color: #5cb85c;*/
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    /*bouton add playlist*/
+    .button{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .btn {
+        text-decoration: none;
+        padding: 12px 30px;
+        font-size: 1.08rem;
+        position: relative;
+    }
+    .btn-playlist-add{
+        color: #e87934;
+        background-color: rgba(255,255,255,0);
+        border: none;
+
+    }
+    .btn-playlist-add::before, .btn-playlist-add::after{
+        border: 2.4px solid #e87934;
+        content: "";
+        position: absolute;
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+        left: 0;
+        bottom: 0;
+        z-index: 0;
+        transition: transform 0.3s ease;
+    }
+    .btn-playlist-add:hover::after{
+        transform: translate(-5px, -5px);
+    }
+    .btn-playlist-add:hover::before{
+        transform: translate(5px, 5px);
+    }
+
+
+
+
+/*    .button-add {
+        margin: auto;
+    }
+
+    .btn{
+        text-decoration: none;
+        font-size: 1.25rem;
+        padding: 15px;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+
+    #new-playlist-button{
+        background: rgba(255,255,255,0.5);
+    }
+    #new-playlist-button:before, #new-playlist-button:after{
+        border: 2px solid #e87934;
+        content: "";
+        position: relative;
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+        left: 0;
+        bottom: 0;
+
+        transition: transform 0.25s ease;
+
+
+
+    }*/
+
+
+
+
+
+
+
+@media only screen and (max-height: 500px) and (max-width:500px){
+
+    .container{
+        height: 100%;
+    }
+}
+
+/*Quand on est au dessus de 500px on affich la barre normal en dessous on fera un burger*/
+@media only screen and (min-width: 500px) {
+    .container {
+/*        background-color: yellow;*/
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 230px 1fr ;
+        grid-template-areas:
+                "";
+        grid-gap: 0;
+        z-index: -20;
+    }
+
+
+    /*****Nav ****/
+    .navigation-left {
+        height: 100vh;
+        color: whitesmoke;
+        background-color: rgb(38,38,38);
+/*        background-color: chocolate;*/
+    }
+
+        .navigation-container {
+
+            height: 100vh;
+            background-color: var(--transparent);
+            border: black solid 3px ;
+            display: grid;
+            grid-template-rows: 1fr 1fr 83vh;
+        }
+
+            .navigation__header{
+                background-color: var(--transparent);
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: flex-end;
+                justify-content: space-evenly;
+                padding: 10px 20px 10px 20px;
+
+            }
+                #header-title{
+                    background-color: var(--transparent);
+                    padding-bottom: 12px;
+                    padding-left: 8px ;
+                    font-size: 1.38rem;
+                    text-transform: uppercase ;
+                    user-select: none;
+
+
+                }
+
+                .search-box{
+                    background-color: var(--transparent);
+                    color: whitesmoke;
+                    margin: auto;
+                    width: 85%;
+                    height: auto;
+                }
+
+                #searchBoxInput{
+                    background-color: var(--transparent);
+                    height: 35px;
+                    border: 1px solid whitesmoke;
+                }
+
+
+            .navigation-container-details {
+                background-color: var(--transparent);
+                display: grid;
+                border: #5cb85c 2px solid;
+                grid-template-rows: 1fr 60% ;
+                padding: 5%;
+                line-height: 1.45;
+            }
+
+                .navigation__nav-list{
+                    list-style: none;
+
+                }
+
+
+
+                #library__section{
+/*                    background-color: #5E740B;*/
+                }
+
+                    .navigation__nav-list-item{
+                        font-size: 1em ;
+                    }
+                    .navigation__nav-list-item:before{
+                        font-family: FontAwesome;
+                        font-size: 1.55rem;
+                        color: #e87934;
+                        padding-right: 5%;
+                    }
+                        /*icones de la bibliothèsques*/
+                        #track_item:before{
+                            content: "\f001";
+                        }
+                        #artist_item:before{
+                            margin-right: 3px;
+                            padding-left: 4px;
+                            content: "\f3c9";
+                        }
+                        #album_item:before{
+                            content: "\f51f";
+                        }
+                        #recent_item:before{
+                            content: "\f017";
+                        }
+                    #playlist__section{
+                        display: grid;
+                        grid-template-rows: 1fr 85px;
+                        border: 2px solid green;
+                    }
+                    .navigation__nav-list{
+                        overflow: auto;
+                    }
+
+                    .playlist-item:before{
+                        content: "\f03a";
+                    }
+                    #playlist__header{
+                        position: -webkit-sticky;
+                        position: sticky;
+                        height: 25px;
+                        width: 100%;
+                        top: 0px;
+                        background-color: var(--background-nav-left);
+                    }
+
+
+}
+
+
+
+
+
+
+
+

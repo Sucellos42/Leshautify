@@ -1,0 +1,12 @@
+@font-face {
+    font-family: Helvetica;
+    src: url(Helvetica-otf/HelveticaNowText-Black.otf),
+         url(Helvetica-otf/HelveticaNowText-BlackItalic.otf),
+         url(Helvetica-otf/HelveticaNowText-Bold.otf),
+         url(Helvetica-otf/HelveticaNowText-BoldItalic.otf),
+         url(Helvetica-otf/HelveticaNowText-ExtBdIta.otf),
+         url(Helvetica-otf/HelveticaNowText-ExtraBold.otf),
+         url(Helvetica-otf/HelveticaNowText-ExtraLight.otf),
+         url(Helvetica-otf/HelveticaNowText-Light.otf),
+
+}

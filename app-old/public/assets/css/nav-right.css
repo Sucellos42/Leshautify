@@ -1,0 +1,12 @@
+@import "nav-left.css";
+
+
+.navigation-right{
+    display: grid;
+    grid-template-rows: 70px 33vh 1fr;
+
+}
+
+
+    /*S'occuper de song list le 5 ou le 6 novembre*/
+
