@@ -10,7 +10,8 @@
 :root{
     --background-nav-left: rgb(38,38,38);
     --background-nav-2: #c0c0c0;
-    --transparent: rgba(255,255,255,0)
+    --transparent: rgba(255,255,255,0);
+    --main-orange: #e87934;
 }
 
 
@@ -111,16 +112,13 @@
 }
 
 /*Quand on est au dessus de 500px on affich la barre normal en dessous on fera un burger*/
-@media only screen and (min-width: 500px) {
+
     .container {
 /*        background-color: yellow;*/
         height: 100vh;
         display: grid;
         grid-template-columns: 230px 1fr ;
-        grid-template-areas:
-                "";
         grid-gap: 0;
-        z-index: -20;
     }
 
 
@@ -128,7 +126,7 @@
     .navigation-left {
         height: 100vh;
         color: whitesmoke;
-        background-color: rgb(38,38,38);
+        background-color: rgb(55,55,55);
 /*        background-color: chocolate;*/
     }
 
@@ -179,8 +177,8 @@
             .navigation-container-details {
                 background-color: var(--transparent);
                 display: grid;
-                border: #5cb85c 2px solid;
-                grid-template-rows: 1fr 60% ;
+                /*border: #5cb85c 2px solid;*/
+                grid-template-rows: 1fr 65% ;
                 padding: 5%;
                 line-height: 1.45;
             }
@@ -223,7 +221,7 @@
                     #playlist__section{
                         display: grid;
                         grid-template-rows: 1fr 85px;
-                        border: 2px solid green;
+                        /*border: 2px solid green;*/
                     }
                     .navigation__nav-list{
                         overflow: auto;
@@ -242,7 +240,7 @@
                     }
 
 
-}
+
 
 
 

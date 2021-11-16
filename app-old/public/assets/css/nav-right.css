@@ -3,7 +3,7 @@
 
 .navigation-right{
     display: grid;
-    grid-template-rows: 70px 33vh 1fr;
+    grid-template-rows: 60px 35vh 1fr;
 
 }
 
