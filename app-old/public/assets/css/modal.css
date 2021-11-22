@@ -1,0 +1,107 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    color: whitesmoke;
+}
+
+* {box-sizing: border-box}
+
+/*sera pour toute les boites modales*/
+.modal-recent{
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.19);
+}
+
+.modal-wrapper {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.83);
+
+    width: 42%;
+    min-height: 300px;
+    min-width: 17rem;
+    max-width: 35rem;
+
+    box-shadow:  -2px -1px 29px 11px rgba(0, 0, 0, 0.41);
+}
+.modal-wrapper > form > h1 {
+    margin: 0;
+    /*padding-bottom: 10px;*/
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-align: center;
+    color: silver;
+    text-align: center;
+}
+
+.modal-wrapper form {
+    width: 100%;
+    height: 100%;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /*padding-top: 15px;*/
+}
+.modal-wrapper input{
+    padding: 8px;
+    margin: 9px 0 0 0;
+    color: whitesmoke;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    background: rgba(80, 80, 80, 0.29);
+}
+
+.modalBtn {
+    min-width: 40px;
+}
+
+
+
+/******css du bouton******/
+
+.btnContainer{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+
+}
+.modalBtn {
+    text-decoration: none;
+    padding: 12px 30px;
+    font-size: 1.08rem;
+    position: relative;
+    color: #e87934;
+    background-color: rgba(255,255,255,0);
+    border: none;
+}
+
+.modalBtn::before, .modalBtn::after{
+    border: 2.4px solid #e87934;
+    content: "";
+    position: absolute;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+    transition: transform 0.3s ease;
+}
+.modalBtn:hover::after{
+    transform: translate(-5px, -5px);
+}
+.modalBtn:hover::before{
+    transform: translate(5px, 5px);
+}
+
+

@@ -29,8 +29,8 @@ class Recent extends Dbh {
     public function checkRecent() {
         try {
             //je définis mes requêtes sql
-            $sqlRecentArtist = "SELECT artist_name from artist order by id_artist desc limit 6 ";
-            $sqlRecentAlbum = "SELECT album_title from album order by id_album desc limit 6 ";
+            $sqlRecentArtist = "SELECT artist_name from artist order by id_artist desc ";
+            $sqlRecentAlbum = "SELECT album_title from album order by id_album desc ";
 
             //prepare et éxecute les réquêtes sql pour trouver les 6 premiers artistes
             $resultArtist = $this->connection->prepare($sqlRecentArtist);
@@ -46,12 +46,6 @@ class Recent extends Dbh {
             die ($e->getMessage());
         }
     }
-
-
-
-/*    public function insertRecent (album_title) {
-
-    }*/
 }
 
 

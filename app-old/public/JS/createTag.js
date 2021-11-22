@@ -12,13 +12,13 @@
  *
  * première version de la fonction
  */
-/*function createTag (tag, classe, parent) {
+function createTag (tag, classe, parent) {
     const newTag = document.createElement(tag);
     newTag.className =  classe;
     parent = document.querySelector(parent);
     parent.appendChild(newTag);
     return newTag;
-}*/
+}
 
 
 /**
@@ -33,7 +33,8 @@ function createNewTag (tag, attribute, value, parents) {
     const newTag = document.createElement(tag);
     newTag.setAttribute(attribute, value);
     parents = document.querySelectorAll(parents);
-    parents.forEach(function (parent){
+    //fonction qui s'appelle elle meme et qui prend en paramètre parent
+    parents.forEach(parent => {
         parent.appendChild(newTag)
     })
     return newTag;
