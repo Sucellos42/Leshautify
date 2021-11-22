@@ -19,7 +19,6 @@ fetch('./back-end/php/recent.php')
     .then(buez => {
         displayArtsist(buez.recentArtist);
         displayAlbum(buez.recentAlbum);
-        displayArtistInModal(buez.recentArtist);
         console.log(buez.recentArtist)
     })
 
@@ -33,7 +32,7 @@ fetch('./back-end/php/recent.php')
  */
 function displayArtsist(singers) {
     // const container = new createTag('div', 'recent-artist-container', '.recent-add__artists')
-    const container = new createNewTag ('div', 'id', 'recent-artist-container', '.recent-add__artists')
+    const container = new CreateNewTag ('div', 'id', 'recent-artist-container', '.recent-add__artists')
 
     container.className = 'recent-container'
     //parcour le tableau d'artiste
@@ -44,18 +43,18 @@ function displayArtsist(singers) {
         //on crée le parent avec un id increment
 
         const id = 'grid-element__artist-' + i
-        const child = new createNewTag('div', 'id', `${id}`, '#recent-artist-container')
+        const child = new CreateNewTag('div', 'id', `${id}`, '#recent-artist-container')
         child.className = 'recent-element'
 
         //on crée la div avec l'image
-        const row = new createTag('div', 'grid-recent-thumbnail', `#${id}`)
+        const row = new CreateTag('div', 'grid-recent-thumbnail', `#${id}`)
         //on peut soit mettre un étiquette avec le logo soit si il existe une image d'artiste, on la met
         //rajouter un h3 dans la div avec l'id correspondant avec le nom d'album correspondant
-        const p = new createTag('p', 'grid-recent-title', `#${id}`)
+        const p = new CreateTag('p', 'grid-recent-title', `#${id}`)
         p.innerText = singer.artist_name
     }
     if ( singers.length < 5 ) {
-        const recentBtn = new createTag('button', 'recent-element recent-button js-modal' , '#recent-artist-container')
+        const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal' , '#recent-artist-container')
         recentBtn.id = 'add-recent-artist'
         recentBtn.addEventListener("click", createModal)
             console.log('okok')
@@ -72,7 +71,7 @@ function displayArtsist(singers) {
  * @param albums
  */
 function displayAlbum(albums) {
-    const container = new createNewTag ('div', 'id', 'recent-album-container', '.recent-add__albums')
+    const container = new CreateNewTag ('div', 'id', 'recent-album-container', '.recent-add__albums')
     container.className = 'recent-container'
     //parcour le tableau d'albums
     let album = null
@@ -82,38 +81,23 @@ function displayAlbum(albums) {
         //on crée le parent avec un id increment
 
         const id = 'grid-element__album-' + i
-        const child = new createNewTag('div', 'id', `${id}`, '#recent-album-container')
+        const child = new CreateNewTag('div', 'id', `${id}`, '#recent-album-container')
         child.className = 'recent-element'
 
         //on crée la div avec l'image
-        const row = new createTag('div', 'grid-recent-thumbnail', `#${id}`)
+        const row = new CreateTag('div', 'grid-recent-thumbnail', `#${id}`)
         //on peut soit mettre un étiquette avec le logo soit si il existe une image d'artiste, on la met
         //rajouter un h3 dans la div avec l'id correspondant avec le nom d'album correspondant
-        const p = new createTag('p', 'grid-recent-title', `#${id}`)
+        const p = new CreateTag('p', 'grid-recent-title', `#${id}`)
         p.innerText = album.album_title
     }
     if ( albums.length < 6 ) {
-        const recentBtn = new createTag('button', 'recent-element recent-button js-modal' , '#recent-album-container')
+        const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal' , '#recent-album-container')
         recentBtn.id = 'add-recent-album'
-        recentBtn.addEventListener("click", createModal(contentArtistModal))
+        recentBtn.addEventListener("click", createModal)
         // recentBtn.setAttribute('onclick' , 'onclick="displayCreateRecent()"')
     }
 
-}
-
-const contentArtistModal = function () {
-
-    const modalForm = new createNewTag ('form', 'action', 'POST', '.modal-wrapper')
-    modalForm.className = 'modalForm'
-    const modalTitle = new createNewTag('h1', 'id', 'modal-title', '.modalForm')
-    //sera par la suite dynamique
-    modalTitle.innerText = modal_title
-    const input = new createNewTag('input', 'type', 'text', '.modalForm')
-    input.className = 'modalInput'
-    const btnContainer = new createNewTag('div', 'class', 'btnContainer', '.modalForm')
-    const modalBtn = new createNewTag('button', 'type' , 'submit', '.btnContainer')
-    modalBtn.className = 'modalBtn'
-    modalBtn.innerText = 'Confirmer'
 }
 
 

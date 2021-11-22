@@ -12,7 +12,7 @@
  *
  * première version de la fonction
  */
-function createTag (tag, classe, parent) {
+function CreateTag (tag, classe, parent) {
     const newTag = document.createElement(tag);
     newTag.className =  classe;
     parent = document.querySelector(parent);
@@ -29,7 +29,7 @@ function createTag (tag, classe, parent) {
  * @param parents
  * @returns {*}
  */
-function createNewTag (tag, attribute, value, parents) {
+function CreateNewTag (tag, attribute, value, parents) {
     const newTag = document.createElement(tag);
     newTag.setAttribute(attribute, value);
     parents = document.querySelectorAll(parents);

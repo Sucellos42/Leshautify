@@ -2,15 +2,24 @@
 
 
 
-function createModal(content) {
+function createModal(modal_title) {
     console.log('ok')
-    const ASIDE = new createNewTag('aside', 'class', 'modal-recent modal', 'body')
+    const ASIDE = new CreateNewTag('aside', 'class', 'modal-recent modal', 'body')
     ASIDE.role = 'dialog'
     //faire un if pour récupérer le title modal qui sera ajouter album ou ajouter artiste
     // ASIDE.setAttribute('aria-labelledby', `${modalTitle}`)
-    const wrapper = new createNewTag('div', 'class', 'modal-wrapper', '.modal')
-    return ASIDE
-    console.log('1')
+    const wrapper = new CreateNewTag('div', 'class', 'modal-wrapper', '.modal')
+    const modalForm = new CreateNewTag ('form', 'action', 'POST', '.modal-wrapper')
+    modalForm.className = 'modalForm'
+    const modalTitle = new CreateNewTag('h1', 'id', 'modal-title', '.modalForm')
+    //sera par la suite dynamique
+    modalTitle.innerText = modal_title
+    const input = new CreateNewTag('input', 'type', 'text', '.modalForm')
+    input.className = 'modalInput'
+    const btnContainer = new CreateNewTag('div', 'class', 'btnContainer', '.modalForm')
+    const modalBtn = new CreateNewTag('button', 'type' , 'submit', '.btnContainer')
+    modalBtn.className = 'modalBtn'
+    modalBtn.innerText = 'Confirmer'
 //return aside et l'appele dans displaymodalartist et album (faire plus
 }
 
@@ -19,28 +28,21 @@ function createModal(content) {
  * se passe uniquement quand on clique sur ajouter un album récent
  * @param artistsModal
  */
+
+/*
 function displayArtistInModal(artistsModal, modal_title){
 
-    const modalForm = new createNewTag ('form', 'action', 'POST', '.modal-wrapper')
-    modalForm.className = 'modalForm'
-    const modalTitle = new createNewTag('h1', 'id', 'modal-title', '.modalForm')
-    //sera par la suite dynamique
-    modalTitle.innerText = modal_title
-    const input = new createNewTag('input', 'type', 'text', '.modalForm')
-    input.className = 'modalInput'
-    const btnContainer = new createNewTag('div', 'class', 'btnContainer', '.modalForm')
-    const modalBtn = new createNewTag('button', 'type' , 'submit', '.btnContainer')
-    modalBtn.className = 'modalBtn'
-    modalBtn.innerText = 'Confirmer'
-    const artists = new createNewTag('ul', 'class', 'artistsModal', '.modalForm')
+
+
+    const artists = new CreateNewTag('ul', 'class', 'artistsModal', '.modalForm')
     artistsModal.forEach(e => {
-        const artist = new createNewTag('li', 'class','artistsModal_element', '.artistsModal')
+        const artist = new CreateNewTag('li', 'class','artistsModal_element', '.artistsModal')
 
         console.log (e.artist_name)
         console.log (artist)
     })
 
-}
+}*/
 
 
 
