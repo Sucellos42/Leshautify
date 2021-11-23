@@ -14,7 +14,7 @@
  *
  */
 
-fetch('./back-end/php/recent.php')
+fetch('./back-end/php/displayRecent.php')
     .then(zeub => zeub.json())
     .then(buez => {
         displayArtsist(buez.recentArtist);
@@ -39,6 +39,7 @@ function displayArtsist(singers) {
     //parcour le tableau d'artiste
     let singer = null
     for (let i = 0; i < singers.length; i++) {
+        if(i === 10) return
         singer = singers[i]
         console.log(singers.length)
         //on crée le parent avec un id increment
@@ -54,12 +55,11 @@ function displayArtsist(singers) {
         const p = new CreateTag('p', 'grid-recent-title', `#${id}`)
         p.innerText = singer.artist_name
     }
-    if ( singers.length < 5 ) {
+    if ( singers.length < 60 ) {
         const modal_title = 'Nouvel artiste'
         const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal' , '#recent-artist-container')
         recentBtn.id = 'add-recent-artist'
         recentBtn.addEventListener("click", function() {
-            createModal()
             modalArtistContent(modal_title);
         })
     }
@@ -73,13 +73,12 @@ function displayArtsist(singers) {
  * @param albums
  */
 function displayAlbum(albums, singers) {
-    const create = null
     const container = new CreateNewTag ('div', 'id', 'recent-album-container', '.recent-add__albums')
     container.className = 'recent-container'
     //parcour le tableau d'albums
     let album = null
     for (let i = 0; i < albums.length; i++) {
-        // if(i === 7) return
+        if(i === 20) return
         album = albums[i]
         //on crée le parent avec un id increment
 
@@ -101,41 +100,7 @@ function displayAlbum(albums, singers) {
         const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal' , '#recent-album-container')
         recentBtn.id = 'add-recent-album'
         recentBtn.addEventListener("click", () => {
-            createModal()
-            //ICI ON FETCH LES DATA DU BACK
-            let rAlb;
-            let rArt = singers
-            fetch('./back-end/php/recent.php')
-                .then(zeub => zeub.json())
-                .then(buez => {
-/*                    rAlb = buez.recentAlbum
-                    rArt = buez.recentArtist*/
-                    modalAlbumContent(modal_title, rArt)
-                    console.log(performance.now() + 'test')
-
-                    // console.log(buez.recentArtist)
-                })
-            // POUR LES PASSER EN PARAMÈTRES
-/*            modalAlbumContent(modal_title, rArt)*/
+            modalAlbumContent(modal_title, singers)
         })
 
     }}
-
-
-
-
-
-/*
-* On veut quand on appuie sur le bouton on insert en bdd le nouvel album
-* déjà on verra pour la suite*/
-/*function addRecent (album_title) {
-
-}*/
-
-
-
-
-
-
-
-

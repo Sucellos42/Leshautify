@@ -1,6 +1,7 @@
 <?php
-include_once('../classes/Dbh.class.php');
+include_once('Dbh.class.php');
 include_once('../functions/functions.php');
+
 // On veut récupérer manuellement les derniers albums et derniers artistes ajoutés
 // Pour ça on veut faire une requếte qui regardera les 8 derniers album et 8 dernier artistes ajoutée
 /*
@@ -46,6 +47,13 @@ class Recent extends Dbh {
             die ($e->getMessage());
         }
     }
+
+    public function getNewRecent () {
+
+    }
+
+
+
 }
 
 

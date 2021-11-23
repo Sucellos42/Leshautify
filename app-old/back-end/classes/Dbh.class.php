@@ -7,7 +7,7 @@ class Dbh {
     private $db_host = 'localhost';
     private $db_password = 'password';
 
-    protected function connect () {
+    public function connect () {
         try {
 
             //se connecter à mysql
@@ -15,10 +15,8 @@ class Dbh {
             //g compri (merci Nicolas)
             //quand j'ai une erreur je renvois une exception
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //Met les infos sous forme d'objet quand il fetch
+            //Met les infos sous forme d'objet quand il fetch sous forme de tableau associatif quand on fait $->fetch()
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            //met les infos fetch sous form de tableau
-//            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }

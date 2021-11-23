@@ -1,7 +1,5 @@
 <?php
-
-include('../Includes/autoIncludeClasses.php');
-
+include_once('../functions/autoIncludeClasses.inc.php');
 
 /**
  * classe qui crée un nouveau user et lie les données user serveur à la base de donnée qui seront rentrées dans le formulaire d'inscription
@@ -90,4 +88,6 @@ class UserRegister extends Dbh
 
 
     }
+
+
 }
