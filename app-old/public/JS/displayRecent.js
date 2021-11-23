@@ -18,8 +18,9 @@ fetch('./back-end/php/recent.php')
     .then(zeub => zeub.json())
     .then(buez => {
         displayArtsist(buez.recentArtist);
-        displayAlbum(buez.recentAlbum);
-        console.log(buez.recentArtist)
+        displayAlbum(buez.recentAlbum, buez.recentArtist);
+        console.log(performance.now() + 'fetch')
+        // console.log(buez.recentArtist)
     })
 
 
@@ -54,12 +55,13 @@ function displayArtsist(singers) {
         p.innerText = singer.artist_name
     }
     if ( singers.length < 5 ) {
+        const modal_title = 'Nouvel artiste'
         const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal' , '#recent-artist-container')
         recentBtn.id = 'add-recent-artist'
-        recentBtn.addEventListener("click", createModal)
-            console.log('okok')
-        // recentBtn.setAttribute('onclick' , 'onclick="displayCreateRecent()"')
-
+        recentBtn.addEventListener("click", function() {
+            createModal()
+            modalArtistContent(modal_title);
+        })
     }
 
 }
@@ -70,13 +72,14 @@ function displayArtsist(singers) {
  *
  * @param albums
  */
-function displayAlbum(albums) {
+function displayAlbum(albums, singers) {
+    const create = null
     const container = new CreateNewTag ('div', 'id', 'recent-album-container', '.recent-add__albums')
     container.className = 'recent-container'
     //parcour le tableau d'albums
     let album = null
     for (let i = 0; i < albums.length; i++) {
-        if(i === 5) return
+        // if(i === 7) return
         album = albums[i]
         //on crée le parent avec un id increment
 
@@ -91,14 +94,35 @@ function displayAlbum(albums) {
         const p = new CreateTag('p', 'grid-recent-title', `#${id}`)
         p.innerText = album.album_title
     }
-    if ( albums.length < 6 ) {
+
+    if ( albums.length < 20 ) {
+        const modal_title = 'Nouvel Album'
+
         const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal' , '#recent-album-container')
         recentBtn.id = 'add-recent-album'
-        recentBtn.addEventListener("click", createModal)
-        // recentBtn.setAttribute('onclick' , 'onclick="displayCreateRecent()"')
-    }
+        recentBtn.addEventListener("click", () => {
+            createModal()
+            //ICI ON FETCH LES DATA DU BACK
+            let rAlb;
+            let rArt = singers
+            fetch('./back-end/php/recent.php')
+                .then(zeub => zeub.json())
+                .then(buez => {
+/*                    rAlb = buez.recentAlbum
+                    rArt = buez.recentArtist*/
+                    modalAlbumContent(modal_title, rArt)
+                    console.log(performance.now() + 'test')
 
-}
+                    // console.log(buez.recentArtist)
+                })
+            // POUR LES PASSER EN PARAMÈTRES
+/*            modalAlbumContent(modal_title, rArt)*/
+        })
+
+    }}
+
+
+
 
 
 /*
