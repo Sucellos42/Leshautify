@@ -18,13 +18,20 @@ if (!empty($email) && !empty($password)) {
         //dans ce cas on afficher une erreur
         $erreur = "Identifiants incorrects";
         var_dump($_SESSION);
+
     } else {
         //sinon on démarre la session
         session_start();
-        $_SESSION['id'] = 1;
+        $_SESSION['id'] = $checklogin['id'];
         header('Location: ../../index.php');
     }
+
+
 }
+//on veut ici que quand l'user va sur loginForm.php il soit directement redirigé vers le dashboard
+//on verifie donc si il est connecté
+require '../../back-end/php/auth.php';
+
 
 ?>
 <div class="container">

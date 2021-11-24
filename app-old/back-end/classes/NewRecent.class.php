@@ -41,7 +41,7 @@ class NewRecent extends Dbh {
 //        return $this->connection->lastInsertId();
     }
 
-    private function insertInAlbum ($album_title, $artist_name): string
+    private function insertInAlbum ($album_title): string
     {
         $sql = "INSERT INTO album (album_title) values (:album_title)";
         $artist_id =
@@ -50,6 +50,13 @@ class NewRecent extends Dbh {
         $stmt->execute();
         //récupère l'id du dernier album ajoutée
         return $this->connection->lastInsertId();
+    }
+    public function fullInsertAlbum ($artist_id, $album_title) {
+        $album_id = $this->insertInAlbum($album_title);
+        $this->associateArtistAlbum($artist_id, $album_id);
+    }
+    private function associateArtistAlbum($artist_id, $album_id) {
+        $sql = "INSERT INTO "
     }
 
 
