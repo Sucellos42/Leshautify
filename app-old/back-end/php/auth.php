@@ -6,7 +6,7 @@ function isConnect(): bool {
     //si $_SESSION connecte est vide on renvoie false
     return !empty($_SESSION['connecte']);
 }
-
+//oooooooo
 
 function userConnected (): void {
     if(!isConnect()){
