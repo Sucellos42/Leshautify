@@ -17,7 +17,6 @@ $user = new UserRegister();
 //insertion en base
 $result = $user->insertToDB($first_name, $last_name, $email, $pseudo, $password);
 if (!$result) {
-    echo('<script>alert("Register successfull")</script>');
     header('Location: ../../public/pages/loginForm.php');
 } else {
     return false;
