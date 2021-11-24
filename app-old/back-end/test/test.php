@@ -1,5 +1,4 @@
 <?php
-$string = "leoleo";
-$hashed = password_hash($string, PASSWORD_DEFAULT);
+require '../functions/autoIncludeClasses.inc.php';
 
-var_dump(password_verify($string, $hashed));
+

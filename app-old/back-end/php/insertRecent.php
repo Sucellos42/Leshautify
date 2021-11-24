@@ -19,7 +19,12 @@ if ($btn_name === 'artist') {
     $newArtist = new NewRecent();
     $newArtist->insertInArtist($artist);
 //    $newArtist->newArtist($artist);
+} elseif ($btn_name === 'album') {
+    $newAlbum = new NewRecent();
+    $result = $newAlbum->associateArtistAlbum($album, $artist);
+
 }
+echo json_encode($result);
 
 //si le name du bouton est album on insert dans album
 /*function insertRecentArtist ($artist_name) {
@@ -31,7 +36,7 @@ if ($btn_name === 'artist') {
 //newrecent va créer insérer un nouvel artiste ou un nouvel
 //en fonction de name button = artist ou name = album
 
-echo json_encode($decoded);
+//echo json_encode($decoded);
 
 
 //On les insère en base de données

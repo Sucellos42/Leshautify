@@ -41,7 +41,15 @@ class NewRecent extends Dbh {
 //        return $this->connection->lastInsertId();
     }
 
-    private function insertInAlbum ($album_title): string
+    /**
+     * insere l'album en base de donnée le nom de l'album serie dans le champs
+     * retourne l'id de l'album inséré
+     * @param $album_title
+     * @return string
+     */
+
+
+    public function insertInAlbum ($album_title): string
     {
         $sql = "INSERT INTO album (album_title) values (:album_title)";
         $artist_id =
@@ -51,12 +59,42 @@ class NewRecent extends Dbh {
         //récupère l'id du dernier album ajoutée
         return $this->connection->lastInsertId();
     }
-    public function fullInsertAlbum ($artist_id, $album_title) {
-        $album_id = $this->insertInAlbum($album_title);
-        $this->associateArtistAlbum($artist_id, $album_id);
+
+
+    //on récupère
+
+    /**
+     * fonction sera utilisé pour associer l'id de l'artiste à l'id de l'album dans associateArtistAlbum()
+     * on récupèrera l'artiste id quand on le select dans la liste déroulante
+     *
+     * @param $artist_name
+     * @return string $id_artist
+     */
+    public function selectIdArtist (string $artist_name)
+    {
+        $sql = "SELECT id_artist from artist where artist_name = :artist_name";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':artist_name', $artist_name);
+        $stmt->execute();
+        return $stmt->fetch();
     }
-    private function associateArtistAlbum($artist_id, $album_id) {
-        $sql = "INSERT INTO "
+
+    /**
+     * On insert dans la table d'association l'id de l'artist et l'id de l'album correspondant
+     * @param $id_artist
+     * @param $id_album
+     */
+    public function associateArtistAlbum(string $album_title, string $artist_name) {
+        $id_album = $this->insertInAlbum($album_title);
+        $id_artist = $this->insertInArtist($artist_name);
+        $sql = "INSERT INTO album_artist (artist_id, album_id) VALUES (:artist_id, :album_id)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':artist_id', $id_artist);
+        $stmt->bindParam(':album_id', $id_album);
+
+        $stmt->execute();
+        return $stmt->fetch();
+        return $id_album . 'artist' . $id_artist . 'album';
     }
 
 
