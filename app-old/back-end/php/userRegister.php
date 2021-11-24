@@ -4,12 +4,13 @@ include_once('../functions/autoIncludeClasses.inc.php');
 
 //on récuprère les input du formulaire
 // on doit sanitize les input $_POST
-$email = (string) $_POST['register-email'];
+$email = (string) $_POST['email'];
 $first_name = (string) $_POST['first_name'];
 $last_name = (string) $_POST['last_name'];
 $pseudo = (string) $_POST['username'];
 $password = (string) $_POST['password'];
 $confirm_password = (string) $_POST['confirm-password'];
+
 
 //cration nouvel objet UserRegister
 $user = new UserRegister();

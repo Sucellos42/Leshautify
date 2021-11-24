@@ -47,13 +47,6 @@ class Recent extends Dbh {
             die ($e->getMessage());
         }
     }
-
-    public function getNewRecent () {
-
-    }
-
-
-
 }
 
 

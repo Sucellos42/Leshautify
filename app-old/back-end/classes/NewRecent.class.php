@@ -18,12 +18,12 @@ class NewRecent extends Dbh {
        $this->connection = $this->connect();
     }
 
-    public function newArtistAlbum ($id) {
+/*    public function newArtistAlbum ($id) {
         $artist_id = $this->insertInArtist();
         $album_id = $this->insertInAlbum($id);
 
 
-    }
+    }*/
 
     /**
      * méthode qui ajoute un artiste en base de donnée
@@ -31,14 +31,14 @@ class NewRecent extends Dbh {
      * @param $artist_name
      * @return string
      */
-    private function insertInArtist($artist_name): string
+    public function insertInArtist($artist_name)
     {
         $sql = "INSERT INTO artist (artist_name) values (:artist_name)";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':artist_name', $artist_name);
         $stmt->execute();
         //je récupère mon dernier id
-        return $this->connection->lastInsertId();
+//        return $this->connection->lastInsertId();
     }
 
     private function insertInAlbum ($album_title, $artist_name): string

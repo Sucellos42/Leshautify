@@ -20,7 +20,7 @@ class UserRegister extends Dbh
      * @param string $email
      * @return bool
      */
-    private function userCheckMail (string $email) :bool {
+    public function userCheckMail (string $email) :bool {
 
         $sql_email = "SELECT pseudo, email FROM user WHERE email = :email";
         $stmt_mail = $this->connection->prepare($sql_email);
@@ -33,6 +33,8 @@ class UserRegister extends Dbh
         return !empty($var);
 
     }
+
+
 
     /**
      * retourne true si il y'a un pseudo correspondant
@@ -70,7 +72,7 @@ class UserRegister extends Dbh
 
         $sql = 'INSERT INTO user (first_name, last_name, pseudo, email, password) VALUES (:first_name, :last_name, :pseudo, :email, :password)';
 
-        $password = password_hash($password, PASSWORD_BCRYPT);
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
         //try catch
         try {

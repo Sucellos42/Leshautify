@@ -1,5 +1,3 @@
-
-
 let modal = null
 
 function createModal(modal_title) {
@@ -10,10 +8,10 @@ function createModal(modal_title) {
     //faire un if pour récupérer le title modal qui sera ajouter album ou ajouter artiste
     // ASIDE.setAttribute('aria-labelledby', `${modalTitle}`)
     const wrapper = new CreateNewTag('div', 'class', 'modal-wrapper', '.modal')
-    ASIDE
     return ASIDE
 //return aside et l'appele dans displaymodalartist et album (faire plus
 }
+
 /**
  * crée la base de la boite modale
  * @param modal_title
@@ -25,46 +23,46 @@ function createModal(modal_title) {
  * @param modal_title
  */
 function modalArtistContent(modal_title) {
-        const ASIDE = createModal(modal_title)
-        const modalForm = new CreateNewTag('form', 'method', 'POST', '.modal-wrapper')
-        modalForm.action = './back-end/php/insertRecent.php'
-        modalForm.className = 'modalForm'
-        const modalTitle = new CreateNewTag('h1', 'id', 'modal-title', '.modalForm')
-        //sera par la suite dynamique
-        modalTitle.innerText = modal_title
-        const input = new CreateNewTag('input', 'type', 'text', '.modalForm')
-        input.className = 'modalInput'
-        input.setAttribute('required', '')
-        input.name = 'new-artist'
-        input.type = 'text'
+    const ASIDE = createModal(modal_title)
+    const modalForm = new CreateNewTag('form', 'method', 'POST', '.modal-wrapper')
+    modalForm.action = './back-end/php/insertRecent.php'
+    modalForm.className = 'modalForm'
+    const modalTitle = new CreateNewTag('h1', 'id', 'modal-title', '.modalForm')
+    //sera par la suite dynamique
+    modalTitle.innerText = modal_title
+    const input = new CreateNewTag('input', 'type', 'text', '.modalForm')
+    input.className = 'modalInput'
+    input.setAttribute('required', '')
+    input.name = 'new-artist'
+    input.type = 'text'
 
-        const btnContainer = new CreateNewTag('div', 'class', 'btnContainer', '.modalForm')
-        const modalBtn = new CreateNewTag('button', 'type', 'submit', '.btnContainer')
-        modalBtn.className = 'modalBtn'
-        modalBtn.innerText = 'Confirmer'
-        modalBtn.addEventListener('click', e => {
-            e.preventDefault()
-            const php = {
-                artist: input.value,
-                btn_name: 'artist',
-                album: ''
-            }
-            fetch('./back-end/php/insertRecent.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(php)
-            })
-                .then(e => e.json())
-                .then(e => {
-                    console.log(e);
-                })
-            /*            .then(
-                            () => closeMODAL
-                        )*/
+    const btnContainer = new CreateNewTag('div', 'class', 'btnContainer', '.modalForm')
+    const modalBtn = new CreateNewTag('button', 'type', 'submit', '.btnContainer')
+    modalBtn.className = 'modalBtn'
+    modalBtn.innerText = 'Confirmer'
+    modalBtn.addEventListener('click', e => {
+        e.preventDefault()
+        const php = {
+            artist: input.value,
+            btn_name: 'artist',
+            album: ''
+        }
+        fetch('./back-end/php/insertRecent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(php)
         })
-    }
+            .then(e => e.json())
+            .then(e => {
+                console.log(e);
+            })
+        /*            .then(
+                        () => closeMODAL
+                    )*/
+    })
+}
 
 /**
  * crée le contenue boite modale add recent album
@@ -121,9 +119,9 @@ function modalAlbumContent(modal_title, tab) {
             .then(e => {
                 console.log(e);
             })
-/*            .then(
-                () => closeMODAL
-            )*/
+        /*            .then(
+                        () => closeMODAL
+                    )*/
     })
 }
 

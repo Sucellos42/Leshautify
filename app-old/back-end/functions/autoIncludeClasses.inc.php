@@ -8,6 +8,5 @@ function autoIncludeClasses ($className) {
     $path = $root . '/back-end/classes/';
     $ext = ".class.php";
     $fullPath = $path . $className . $ext;
-    echo $fullPath;
     include_once $fullPath;
 }

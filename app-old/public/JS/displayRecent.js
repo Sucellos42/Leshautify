@@ -33,13 +33,13 @@ fetch('./back-end/php/displayRecent.php')
  */
 function displayArtsist(singers) {
     // const container = new createTag('div', 'recent-artist-container', '.recent-add__artists')
-    const container = new CreateNewTag ('div', 'id', 'recent-artist-container', '.recent-add__artists')
+    const container = new CreateNewTag('div', 'id', 'recent-artist-container', '.recent-add__artists')
 
     container.className = 'recent-container'
     //parcour le tableau d'artiste
     let singer = null
     for (let i = 0; i < singers.length; i++) {
-        if(i === 10) return
+        if (i === 23) return
         singer = singers[i]
         console.log(singers.length)
         //on crée le parent avec un id increment
@@ -55,16 +55,17 @@ function displayArtsist(singers) {
         const p = new CreateTag('p', 'grid-recent-title', `#${id}`)
         p.innerText = singer.artist_name
     }
-    if ( singers.length < 60 ) {
+    if (singers.length < 60) {
         const modal_title = 'Nouvel artiste'
-        const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal' , '#recent-artist-container')
+        const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal', '#recent-artist-container')
         recentBtn.id = 'add-recent-artist'
-        recentBtn.addEventListener("click", function() {
+        recentBtn.addEventListener("click", function () {
             modalArtistContent(modal_title);
         })
     }
 
 }
+
 /**
  * fabrique une div pour chaque artiste du tableau et l'affiche dans le dom
  * rajouter ensuite une image
@@ -73,12 +74,12 @@ function displayArtsist(singers) {
  * @param albums
  */
 function displayAlbum(albums, singers) {
-    const container = new CreateNewTag ('div', 'id', 'recent-album-container', '.recent-add__albums')
+    const container = new CreateNewTag('div', 'id', 'recent-album-container', '.recent-add__albums')
     container.className = 'recent-container'
     //parcour le tableau d'albums
     let album = null
     for (let i = 0; i < albums.length; i++) {
-        if(i === 20) return
+        if (i === 20) return
         album = albums[i]
         //on crée le parent avec un id increment
 
@@ -94,13 +95,14 @@ function displayAlbum(albums, singers) {
         p.innerText = album.album_title
     }
 
-    if ( albums.length < 20 ) {
+    if (albums.length < 20) {
         const modal_title = 'Nouvel Album'
 
-        const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal' , '#recent-album-container')
+        const recentBtn = new CreateTag('button', 'recent-element recent-button js-modal', '#recent-album-container')
         recentBtn.id = 'add-recent-album'
         recentBtn.addEventListener("click", () => {
             modalAlbumContent(modal_title, singers)
         })
 
-    }}
+    }
+}

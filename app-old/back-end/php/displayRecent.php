@@ -8,6 +8,3 @@ $recent = new Recent();
 $recent->checkRecent();
 echo json_encode($recent);
 
-
-
-?>
