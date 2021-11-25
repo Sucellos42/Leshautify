@@ -22,6 +22,19 @@ onFocus()
 
 }
 
+function createPlaylist () {
+    const addPlaylistBtn = document.querySelector('#add-playlist-button');
+    addPlaylistBtn.addEventListener('click', () => {
+        let i = 0
+        i++
+        const newPlaylist = new CreateNewTag('li', 'class', 'nav-list-item playlist-item focusable', '.navigation__nav-list')
+        id = 'nav-list-item-' + i
+        newPlaylist.id = id
+        const newPlaylistField = new CreateNewTag('input', 'type', 'text', `${id}`)
+
+    })
+}
+
 //function onhover element playlist qui affiche clic droit pour editer ou supprimer
 
 

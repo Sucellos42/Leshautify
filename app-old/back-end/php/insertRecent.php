@@ -16,8 +16,16 @@ $btn_name = $decoded['btn_name'];
 
 if ($btn_name === 'artist') {
     $newArtist = new NewRecent();
-//    si le methode insertinartist renvoie false on envoie a json pour créer un alert danger en js "artist exist"
-    if(!$newArtist->insertInArtist($artist)){
+    if(!$artist){
+        $json = [
+            'status' => 'notok',
+            'erreur' => 'Veuillez rentrer un artiste'
+        ];
+        echo json_encode($json);
+        exit();
+    }elseif
+    //    si le methode insertinartist renvoie false on envoie a json pour créer un alert danger en js "artist exist"
+    (!$newArtist->insertInArtist($artist)){
         $json = [
             'status' => 'ok',
             'content' => 'false'
@@ -31,22 +39,35 @@ if ($btn_name === 'artist') {
         echo json_encode($json);
     }
 //    $newArtist->newArtist($artist);
-} elseif ($btn_name === 'album') {
-    $newAlbum = new NewRecent();
-    $result = $newAlbum->associateArtistAlbum($album, $artist);
-
 }
-//echo json_encode($result);
 
-//si le name du bouton est album on insert dans album
-/*function insertRecentArtist ($artist_name) {
-    $sql = 'INSERT INTO artist(artist_name) VALUES (:artist_name)';
-    $artist_name = htmlentities($artist_name);
-    $stmt = $pdo->prepare($sql);
-
-}*/
-//newrecent va créer insérer un nouvel artiste ou un nouvel
-//en fonction de name button = artist ou name = album
+elseif ($btn_name === 'album') {
+    $newAlbum = new NewRecent();
+    //on regarde si le champs nouvel album est vide
+    if(!$album) {
+        $json = [
+            'status' => 'notok',
+            'erreur' => 'Veuillez rentrer un artiste'
+        ];
+        echo json_encode($json);
+        exit();
+    //on regarde si le l'album éxiste deja dans la table associate
+    }elseif ($newAlbum->associateArtistAlbum($album, $artist)){
+        //si il existe déjà on renoie un objet json avec false
+        $json = [
+            'status' => 'ok',
+            'content' => 'true'
+        ];
+        echo json_encode($json);
+    } else {
+        //si l'insert se fait
+        $json = [
+            'status' => 'ok',
+            'content' => 'false'
+        ];
+        echo json_encode($json);
+    }
+}
 
 
 

@@ -1,5 +1,13 @@
 let modal = null
 
+/**
+ * /**
+ * crée la base de la boite modale
+ * j'aurai du faire des le départ une boite modale qui se crée à l'ouverture de la page et qui est cachée
+ * et prendra en parametre le content modal a chaque fois qu'on l'ouvre au lieu de créer la boite modale entiere
+ * @param modal_title
+ * @returns {*}
+ */
 function createModal(modal_title) {
     console.log(performance.now() + 'recent')
     const ASIDE = new CreateNewTag('aside', 'class', 'modal-recent modal', 'body')
@@ -8,19 +16,22 @@ function createModal(modal_title) {
     //faire un if pour récupérer le title modal qui sera ajouter album ou ajouter artiste
     // ASIDE.setAttribute('aria-labelledby', `${modalTitle}`)
     const wrapper = new CreateNewTag('div', 'class', 'modal-wrapper', '.modal')
+    const closeModalBtn = new CreateNewTag('button', 'id', 'close-modal', '.modal-wrapper')
+    // closeModalBtn.addEventListener('click', closeModal(e))
     return ASIDE
-//return aside et l'appele dans displaymodalartist et album (faire plus
+//return aside et l'appele dans displaymodalartist et album (faire plus)
 }
 
 
-function closeModal() {
-    //videra le content modal et cachera la modale
-}
+/*function closeModal(e) {
+    e.preventDefault()
+    //videra le content modal et cachera la modale au mieux
+    //pour l'instant on supprime tout vu qu'on recrée la boite modale a chaque fois qu'on clique sur plus
+    const modal = document.getElementById(".modal")
+    modal.remove();
+}*/
 
-/**
- * crée la base de la boite modale
- * @param modal_title
- */
+
 
 /**
  * fonction pour créer le contenu de la boite modal pour ajouter un artiste récent
@@ -40,6 +51,8 @@ function modalArtistContent(modal_title) {
     input.setAttribute('required', '')
     input.name = 'new-artist'
     input.type = 'text'
+
+
 
     const btnContainer = new CreateNewTag('div', 'class', 'btnContainer', '.modalForm')
     const modalBtn = new CreateNewTag('button', 'type', 'submit', '.btnContainer')
@@ -61,8 +74,12 @@ function modalArtistContent(modal_title) {
         })
             .then(e => e.json())
             .then(e => {
+                //si le champs est vide on affiche une alert champs vide
                 //l'artiste n'existe pas il est inséré
-                if (e.content === 'true') {
+                if(e.status ==='notok'){
+                   alert(e.erreur)
+                }
+                else if(e.content === 'true' && e.status === 'ok') {
                     if (!document.querySelector('.submit-response')){
                         const success = new CreateNewTag('div', 'class', 'submit-response', '.modal-wrapper')
                         success.innerText = "Nouvel artiste ajouté"
@@ -73,7 +90,7 @@ function modalArtistContent(modal_title) {
 
                 }
                 //l'artiste existe deja
-                if (e.content === 'false') {
+                else {
                     if (!document.querySelector('.submit-response')){
                         const fail = new CreateNewTag('div', 'class', 'submit-response', '.modal-wrapper')
                         fail.innerText = "L'artiste existe déjà"
@@ -88,6 +105,8 @@ function modalArtistContent(modal_title) {
                     )*/
     })
 }
+
+
 
 /**
  * crée le contenue boite modale add recent album
@@ -143,13 +162,38 @@ function modalAlbumContent(modal_title, tab) {
             .then(e => e.json())
             .then(e => {
                 //essayer de voir si l'album de l'artiste existe déjà en regardant dans associate album artiste
-                console.log(e);
+                if(e.status ==='notok'){
+                    alert(e.erreur)
+                }
+                else if(e.content === 'true' && e.status === 'ok') {
+                    if (!document.querySelector('.submit-response')){
+                        const success = new CreateNewTag('div', 'class', 'submit-response', '.modal-wrapper')
+                        success.innerText = "Nouvel album ajouté"
+                    } else {
+                        document.querySelector('.submit-response').innerText = "Nouvel album ajouté"
+                    }
+
+
+                }
+                //l'album existe deja
+                else {
+                    if (!document.querySelector('.submit-response')){
+                        const fail = new CreateNewTag('div', 'class', 'submit-response', '.modal-wrapper')
+                        fail.innerText = "L'album existe déjà"
+                    } else {
+                        document.querySelector('.submit-response').innerText = "L'album existe déjà"
+                    }
+                }
+
             })
+            })
+        /*.catch pour voir s'il y'a une erreur*/
         /*            .then(
                         () => closeMODAL
                     )*/
-    })
 }
+
+
 
 
 

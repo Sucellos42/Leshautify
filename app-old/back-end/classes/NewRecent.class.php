@@ -54,8 +54,6 @@ class NewRecent extends Dbh {
      * @param $album_title
      * @return string
      */
-
-
     public function insertInAlbum ($album_title): string
     {
         $sql = "INSERT INTO album (album_title) values (:album_title)";
@@ -76,13 +74,15 @@ class NewRecent extends Dbh {
      * @param $artist_name
      * @return string $id_artist
      */
-    public function selectIdArtist (string $artist_name): string
+    public function selectIdArtist (string $artist_name)
     {
-        $sql = "SELECT id_artist from artist where artist_name = :artist_name";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bindParam(':artist_name', $artist_name);
-        $stmt->execute();
-        return $stmt->fetch();
+        $sql_exist = "SELECT id_artist from artist WHERE artist_name = :artist_name";
+        $stmt_exist = $this->connection->prepare($sql_exist);
+        $stmt_exist->bindParam(':artist_name', $artist_name);
+        $stmt_exist->execute();
+        $id_artist = $stmt_exist->fetch();
+        return $id_artist['id_artist'];
+
     }
 
 
@@ -92,18 +92,34 @@ class NewRecent extends Dbh {
      * @param $id_artist
      * @param $id_album
      */
-    public function associateArtistAlbum(string $album_title, string $artist_name) {
-        $id_album = $this->selectIdArtist($album_title);
+    public function associateArtistAlbum(string $album_title, string $artist_name)
+    {
         $id_artist = $this->selectIdArtist($artist_name);
+        $id_album = $this->insertInAlbum($album_title);
+        //on veut regarder si l'album de l'artiste existe déjà dans la table associate artiste
+        //ON JOINT LES 3 TABLES, ON RECUP LE NOM DE L'ARTISTE ET LE NOM DE L'ALBUM ET CHECK DANS ASSOCIATE
+/*        $sql_exist = "
+            SELECT album_artist.artist_id as artist_id, album_artist.album_id as album_id 
+            FROM album_artist 
+            JOIN artist on album_artist.artist_id = artist.id_artist 
+            JOIN album on album_artist.album_id = album.id_album
+            WHERE artist_name = :artist_name and album_title = :album_title";
+        $stmt_exist = $this->connection->prepare($sql_exist);
+        $stmt_exist->bindParam(':$artist_name', $artist_name);
+        $stmt_exist->bindParam(':album_title', $album_title);
+        $stmt_exist->execute();*/
 
-        $sql = "INSERT INTO album_artist (artist_id, album_id) VALUES (:artist_id, :album_id)";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bindParam(':artist_id', $id_artist);
-        $stmt->bindParam(':album_id', $id_album);
-        $stmt->execute();
-        return $stmt->fetch();
+        try {
+            $sql = "INSERT INTO album_artist (artist_id, album_id) VALUES (:artist_id, :album_id)";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':artist_id', $id_artist);
+            $stmt->bindParam(':album_id', $id_album);
+            $stmt->execute();
+            return true;
+        } catch(Exception $e) {
+            die('Erreur: ' . $e->getMessage()) ;
+            return false;
+        }
     }
-
-
 }
 
