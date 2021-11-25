@@ -7,6 +7,20 @@
 
 }
 
+/*header*/
+.header{
+    display: flex;
+
+}
+.logout{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    align-self: flex-end;
+    height: 45px;
+    width: 45px;
+}
+
 
     /*S'occuper de song list le 5 ou le 6 novembre*/
 

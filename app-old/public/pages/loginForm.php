@@ -1,5 +1,4 @@
 <?php
-include_once('headerForm.php');
 require_once('../../back-end/functions/autoIncludeClasses.inc.php');
 //vérification des informations de login
 
@@ -18,7 +17,6 @@ if (!empty($email) && !empty($password)) {
         //dans ce cas on afficher une erreur
         $erreur = "Identifiants incorrects";
         var_dump($_SESSION);
-
     } else {
         //sinon on démarre la session
         session_start();
@@ -30,9 +28,10 @@ if (!empty($email) && !empty($password)) {
 }
 //on veut ici que quand l'user va sur loginForm.php il soit directement redirigé vers le dashboard
 //on verifie donc si il est connecté
-require '../../back-end/php/auth.php';
+//require '../../back-end/php/auth.php';
+//userConnected();
 
-
+require('headerForm.php');
 ?>
 <div class="container">
             <div class="row">

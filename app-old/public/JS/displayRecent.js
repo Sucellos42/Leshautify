@@ -15,10 +15,10 @@
  */
 
 fetch('./back-end/php/displayRecent.php')
-    .then(zeub => zeub.json())
-    .then(buez => {
-        displayArtsist(buez.recentArtist);
-        displayAlbum(buez.recentAlbum, buez.recentArtist);
+    .then(json => json.json())
+    .then(recent => {
+        displayArtsist(recent.recentArtist);
+        displayAlbum(recent.recentAlbum, recent.recentArtist);
         console.log(performance.now() + 'fetch')
         // console.log(buez.recentArtist)
     })

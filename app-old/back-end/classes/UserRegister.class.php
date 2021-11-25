@@ -20,13 +20,14 @@ class UserRegister extends Dbh
      * @param string $email
      * @return bool
      */
-    public function userCheckMail (string $email) :bool {
+    public function userCheckMail () :bool {
 
-        $sql_email = "SELECT pseudo, email FROM user WHERE email = :email";
+//        $sql_email = "SELECT pseudo, email FROM user WHERE email = :email";
+        $sql_email = "select email from user";
         $stmt_mail = $this->connection->prepare($sql_email);
-        $stmt_mail->bindParam(':email', $email);
+//        $stmt_mail->bindParam(':email', $email);
         $stmt_mail->execute();
-        $var = $stmt_mail->fetch();
+        $var = $stmt_mail->fetchAll();
 
         //empty regarde si la variable est vide
         //donc ici return true si fetch contient quelque chose et false si var est vide

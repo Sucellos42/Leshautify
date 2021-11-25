@@ -15,9 +15,7 @@
 
     <script defer src="public/JS/createTag.js"></script>
     <script defer src="public/JS/displayRecent.js"></script>
-    <script defer src="public/JS/addRecent.js"></script>
     <script defer src="public/JS/recentModal.js"></script>
-
-
+    <script defer src="public/JS/addPlaylist.js"></script>
 </head>
 <body>

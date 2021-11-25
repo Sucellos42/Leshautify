@@ -10,3 +10,9 @@ function isConnect(): bool {
     return !empty($_SESSION['id']);
 }
 
+function userConnected(): void {
+    if(!isConnect()) {
+        header('Location: ../../public/pages/loginForm.php');
+    }
+}
+
