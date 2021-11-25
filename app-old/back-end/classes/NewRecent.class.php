@@ -18,25 +18,32 @@ class NewRecent extends Dbh {
        $this->connection = $this->connect();
     }
 
-/*    public function newArtistAlbum ($id) {
-        $artist_id = $this->insertInArtist();
-        $album_id = $this->insertInAlbum($id);
-
-
-    }*/
-
     /**
-     * méthode qui ajoute un artiste en base de donnée
-     * renvoie l'id de l'artiste
+     * méthode qui ajoute un artiste en base de donnée si l'artiste n'existe pas
+     * si il n'existe pas on le crée et on renvoie son id
+     * si il existe on renvoie l'id de l'artiste
+     * ou false s'il y a deja un artiste qui existe en bdd
      * @param $artist_name
-     * @return string
+     * @return string|bool
+     *
      */
-    public function insertInArtist($artist_name)
+    public function insertInArtist($artist_name): string
     {
-        $sql = "INSERT INTO artist (artist_name) values (:artist_name)";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bindParam(':artist_name', $artist_name);
-        $stmt->execute();
+        $sql_exist = "SELECT * from artist WHERE artist_name = :artist_name";
+        $stmt_exist = $this->connection->prepare($sql_exist);
+        $stmt_exist->bindParam(':artist_name', $artist_name);
+        $stmt_exist->execute();
+        $artist = $stmt_exist->fetch();
+
+        if(!$artist) {
+            $sql = "INSERT INTO artist (artist_name) values (:artist_name)";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':artist_name', $artist_name);
+            $stmt->execute();
+            return $this->connection->lastInsertId();
+
+        } else return false ;
+
         //je récupère mon dernier id
 //        return $this->connection->lastInsertId();
     }
@@ -52,7 +59,6 @@ class NewRecent extends Dbh {
     public function insertInAlbum ($album_title): string
     {
         $sql = "INSERT INTO album (album_title) values (:album_title)";
-        $artist_id =
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':album_title', $album_title);
         $stmt->execute();
@@ -61,16 +67,16 @@ class NewRecent extends Dbh {
     }
 
 
-    //on récupère
-
     /**
      * fonction sera utilisé pour associer l'id de l'artiste à l'id de l'album dans associateArtistAlbum()
      * on récupèrera l'artiste id quand on le select dans la liste déroulante
+     * (on aurait pu utiliser insert album mais j'arrive pas a renvoyer false pour générer une erreur qui sera fetch en js
+     * si l'artiste existe deja et qu'on renvoie son id
      *
      * @param $artist_name
      * @return string $id_artist
      */
-    public function selectIdArtist (string $artist_name)
+    public function selectIdArtist (string $artist_name): string
     {
         $sql = "SELECT id_artist from artist where artist_name = :artist_name";
         $stmt = $this->connection->prepare($sql);
@@ -79,27 +85,25 @@ class NewRecent extends Dbh {
         return $stmt->fetch();
     }
 
+
+
     /**
      * On insert dans la table d'association l'id de l'artist et l'id de l'album correspondant
      * @param $id_artist
      * @param $id_album
      */
     public function associateArtistAlbum(string $album_title, string $artist_name) {
-        $id_album = $this->insertInAlbum($album_title);
-        $id_artist = $this->insertInArtist($artist_name);
+        $id_album = $this->selectIdArtist($album_title);
+        $id_artist = $this->selectIdArtist($artist_name);
+
         $sql = "INSERT INTO album_artist (artist_id, album_id) VALUES (:artist_id, :album_id)";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':artist_id', $id_artist);
         $stmt->bindParam(':album_id', $id_album);
-
         $stmt->execute();
         return $stmt->fetch();
-        return $id_album . 'artist' . $id_artist . 'album';
     }
 
 
-
-/*    public function newRecentAlbum($album_title, $artist_name) {
-
-    }*/
 }
+

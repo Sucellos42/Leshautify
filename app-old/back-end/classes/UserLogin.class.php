@@ -18,7 +18,8 @@ class UserLogin extends Dbh {
      * @param string $password
      * @return false|mixed
      */
-    public function userCheckAuth (string $email, string $password) {
+    public function userCheckAuth (string $email, string $password): mixed
+    {
         $sql = "SELECT email, password, id FROM user where email = :email";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':email', $email);

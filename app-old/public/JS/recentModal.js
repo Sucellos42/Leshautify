@@ -12,6 +12,11 @@ function createModal(modal_title) {
 //return aside et l'appele dans displaymodalartist et album (faire plus
 }
 
+
+function closeModal() {
+    //videra le content modal et cachera la modale
+}
+
 /**
  * crée la base de la boite modale
  * @param modal_title
@@ -56,7 +61,27 @@ function modalArtistContent(modal_title) {
         })
             .then(e => e.json())
             .then(e => {
-                console.log(e);
+                //l'artiste n'existe pas il est inséré
+                if (e.content === 'true') {
+                    if (!document.querySelector('.submit-response')){
+                        const success = new CreateNewTag('div', 'class', 'submit-response', '.modal-wrapper')
+                        success.innerText = "Nouvel artiste ajouté"
+                    } else {
+                        document.querySelector('.submit-response').innerText = "Nouvel artiste ajouté"
+                    }
+
+
+                }
+                //l'artiste existe deja
+                if (e.content === 'false') {
+                    if (!document.querySelector('.submit-response')){
+                        const fail = new CreateNewTag('div', 'class', 'submit-response', '.modal-wrapper')
+                        fail.innerText = "L'artiste existe déjà"
+                    } else {
+                        document.querySelector('.submit-response').innerText = "L'artiste existe déjà"
+                    }
+                }
+
             })
         /*            .then(
                         () => closeMODAL
@@ -117,6 +142,7 @@ function modalAlbumContent(modal_title, tab) {
         })
             .then(e => e.json())
             .then(e => {
+                //essayer de voir si l'album de l'artiste existe déjà en regardant dans associate album artiste
                 console.log(e);
             })
         /*            .then(

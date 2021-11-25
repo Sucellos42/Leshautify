@@ -12,11 +12,10 @@ class NavPlaylist extends Dbh {
 
 
     public function getPlaylist (){
-        $sql = "SELECT id from user";
+        $sql = "SELECT id_playlist from playlist";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetchAll();
-        return $result;
+        return $stmt->fetchAll();
     }
 
 

@@ -1,6 +1,5 @@
 <?php
 include_once('../functions/autoIncludeClasses.inc.php');
-include_once('../classes/NewRecent.class.php');
 //On récupère les infos du formulaires
 $data = trim(file_get_contents('php://input'));
 $decoded = json_decode($data, true);
@@ -17,14 +16,27 @@ $btn_name = $decoded['btn_name'];
 
 if ($btn_name === 'artist') {
     $newArtist = new NewRecent();
-    $newArtist->insertInArtist($artist);
+//    si le methode insertinartist renvoie false on envoie a json pour créer un alert danger en js "artist exist"
+    if(!$newArtist->insertInArtist($artist)){
+        $json = [
+            'status' => 'ok',
+            'content' => 'false'
+        ];
+        echo json_encode($json);
+    } else {
+        $json = [
+            'status' => 'ok',
+            'content' => 'true'
+        ];
+        echo json_encode($json);
+    }
 //    $newArtist->newArtist($artist);
 } elseif ($btn_name === 'album') {
     $newAlbum = new NewRecent();
     $result = $newAlbum->associateArtistAlbum($album, $artist);
 
 }
-echo json_encode($result);
+//echo json_encode($result);
 
 //si le name du bouton est album on insert dans album
 /*function insertRecentArtist ($artist_name) {
@@ -36,9 +48,9 @@ echo json_encode($result);
 //newrecent va créer insérer un nouvel artiste ou un nouvel
 //en fonction de name button = artist ou name = album
 
-//echo json_encode($decoded);
 
 
-//On les insère en base de données
+
+
 
 
