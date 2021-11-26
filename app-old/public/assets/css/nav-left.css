@@ -185,7 +185,9 @@
 
                 .navigation__nav-list{
                     list-style: none;
-
+                    display: block;
+                    display: flex;
+                    flex-direction: column;
                 }
 
 
@@ -196,7 +198,16 @@
 
                     .navigation__nav-list-item{
                         font-size: 1em ;
+                        display: flex;
                     }
+                        .navigation__nav-list-item > input {
+                            background-color: rgba(0, 0, 0, 0.12);
+                            text-align: center;
+                            color: #e87934;
+                            border: none;
+                            max-width: 160px;
+                            height: 30px;
+                        }
                     .navigation__nav-list-item:before{
                         font-family: FontAwesome;
                         font-size: 1.55rem;
@@ -226,6 +237,9 @@
                     .navigation__nav-list{
                         overflow: auto;
                     }
+                    .playlist-item{
+                        padding-block-start: 7px;
+                    }
 
                     .playlist-item:before{
                         content: "\f03a";
@@ -239,6 +253,10 @@
                         background-color: var(--background-nav-left);
                     }
 
+
+.hidden {
+    display: none;
+}
 
 
 

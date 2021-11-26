@@ -13,9 +13,9 @@
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/eeb6c15f81.js"></script>
     <!-- <link rel="stylesheet" href="assets/font.css"> -->
 
-    <script defer src="public/JS/createTag.js"></script>
+    <script src="public/JS/createTag.js" defer></script>
     <script defer src="public/JS/displayRecent.js"></script>
     <script defer src="public/JS/recentModal.js"></script>
-    <script defer src="public/JS/addPlaylist.js"></script>
+    <script src="public/JS/addPlaylist.js" defer></script>
 </head>
 <body>

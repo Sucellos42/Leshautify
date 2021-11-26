@@ -21,18 +21,32 @@ onFocus()
     })
 
 }
-
-function createPlaylist () {
-    const addPlaylistBtn = document.querySelector('#add-playlist-button');
+createPlaylistInput()
+function createPlaylistInput () {
+    const addPlaylistBtn = document.querySelector('#new-playlist-button');
     addPlaylistBtn.addEventListener('click', () => {
         let i = 0
         i++
-        const newPlaylist = new CreateNewTag('li', 'class', 'nav-list-item playlist-item focusable', '.navigation__nav-list')
-        id = 'nav-list-item-' + i
+        const newPlaylist = new CreateNewTag('li', 'class', 'navigation__nav-list-item playlist-item focusable', '.navigation__nav-list')
+        const id = 'nav-list-item-' + i
         newPlaylist.id = id
-        const newPlaylistField = new CreateNewTag('input', 'type', 'text', `${id}`)
+        const newPlaylistField = new CreateNewTag('input', 'type', 'text', `#${id}`)
+        newPlaylistField.addEventListener('change', e => {
+            console.log(e.target.value)
+
+            const playlistLink = new CreateNewTag('a', 'href', '#', `#${id}`)
+            const id_link = 'playlist-link-' + i
+            playlistLink.id = id_link
+            // newPlaylistField.toggle('hidden')
+
+        })
+
 
     })
+}
+
+function createPlaylist (name) {
+
 }
 
 //function onhover element playlist qui affiche clic droit pour editer ou supprimer
