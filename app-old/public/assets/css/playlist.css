@@ -1,0 +1,8 @@
+.hidden {
+    display: none;
+}
+
+.playlist-link {
+    text-decoration: none;
+    color: whitesmoke;
+}

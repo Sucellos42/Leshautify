@@ -1,9 +1,11 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    //si elle n'existe pas on la démarre
+    session_start();
+}
+
+
 require_once 'header.php';
-/*require '../../back-end/php/auth.php';
-userConnected();*/
-
-
 ?>
 
     <div class="container">

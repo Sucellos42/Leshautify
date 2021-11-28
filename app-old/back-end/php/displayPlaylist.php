@@ -1,5 +1,7 @@
 <?php
 require('../functions/autoIncludeClasses.inc.php');
-$playlist = new NavPlaylist();
-$result = $playlist->getPlaylist();
+include '../classes/Playlist.php';
+
+$playlist = new Playlist();
+$result = $playlist->getPlaylist([$_SESSION['id']]);
 var_dump($result);

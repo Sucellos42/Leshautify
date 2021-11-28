@@ -10,6 +10,7 @@
     <link href="public/assets/css/recent.css" rel="stylesheet">
     <link href="public/assets/css/song-list.css" rel="stylesheet">
     <link href="public/assets/css/modal.css" rel="stylesheet">
+    <link href="public/assets/css/playlist.css" rel="stylesheet">
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/eeb6c15f81.js"></script>
     <!-- <link rel="stylesheet" href="assets/font.css"> -->
 

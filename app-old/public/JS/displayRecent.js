@@ -14,11 +14,18 @@
  *
  */
 
+let recentArtist = []
+let recentAlbum = []
+
+
 fetch('./back-end/php/displayRecent.php')
     .then(json => json.json())
     .then(recent => {
         displayArtsist(recent.recentArtist);
         displayAlbum(recent.recentAlbum, recent.recentArtist);
+        recentArtist = recent.recentArtist
+        console.log(recentArtist)
+
         console.log(performance.now() + 'fetch')
         // console.log(buez.recentArtist)
     })

@@ -38,7 +38,7 @@ function createModal(modal_title) {
  * appelée dans displayArtist dans le fichier displayRecent
  * @param modal_title
  */
-function modalArtistContent(modal_title) {
+function modalArtistContent(modal_title, artist_name) {
     const ASIDE = createModal(modal_title)
     const modalForm = new CreateNewTag('form', 'method', 'POST', '.modal-wrapper')
     modalForm.action = './back-end/php/insertRecent.php'
@@ -48,7 +48,7 @@ function modalArtistContent(modal_title) {
     modalTitle.innerText = modal_title
     const input = new CreateNewTag('input', 'type', 'text', '.modalForm')
     input.className = 'modalInput'
-    input.setAttribute('required', '')
+    // input.setAttribute('required', '')
     input.name = 'new-artist'
     input.type = 'text'
 
@@ -58,6 +58,11 @@ function modalArtistContent(modal_title) {
     const modalBtn = new CreateNewTag('button', 'type', 'submit', '.btnContainer')
     modalBtn.className = 'modalBtn'
     modalBtn.innerText = 'Confirmer'
+    const btnCloseContainer = new CreateNewTag('div', 'class', 'btnContainer btnClose', '.modalForm')
+    const modalCloseBtn = new CreateNewTag('button', 'type', 'submit', '.btnClose')
+    modalCloseBtn.className = 'modalBtn'
+    modalCloseBtn.innerText = 'Quitter'
+
     modalBtn.addEventListener('click', e => {
         e.preventDefault()
         const php = {
@@ -103,6 +108,9 @@ function modalArtistContent(modal_title) {
         /*            .then(
                         () => closeMODAL
                     )*/
+    })
+    modalCloseBtn.addEventListener(('click'), e => {
+        e.location.reload()
     })
 }
 

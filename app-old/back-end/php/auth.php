@@ -1,5 +1,5 @@
 <?php
-
+//on veut bloquer l'accès au dashboard si l'user n'est pas connecté
 function isConnect(): bool {
     //on regarde si la session existe
     if (session_status() === PHP_SESSION_NONE) {
@@ -13,6 +13,7 @@ function isConnect(): bool {
 function userConnected(): void {
     if(!isConnect()) {
         header('Location: ../../public/pages/loginForm.php');
+        exit();
     }
 }
 
