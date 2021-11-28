@@ -5,6 +5,7 @@ include_once('../functions/autoIncludeClasses.inc.php');
 //on récuprère les input du formulaire
 // on doit sanitize les input $_POST
 $email = (string) $_POST['email'];
+$email = sanitize_email($email);
 $first_name = (string) $_POST['first_name'];
 $last_name = (string) $_POST['last_name'];
 $pseudo = (string) $_POST['username'];

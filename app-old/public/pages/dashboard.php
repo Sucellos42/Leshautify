@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     //si elle n'existe pas on la démarre
     session_start();
 }
+var_dump($_SESSION);
 
 
 require_once 'header.php';
@@ -70,9 +71,9 @@ require_once 'header.php';
                                 Playlists
                                 <hr class="spacer">
                             </div>
-                                        <li class="navigation__nav-list-item playlist-item " id="item-1"><a href="" class="focusable "> Playlist 1</a></li>
+                                       <!-- <li class="navigation__nav-list-item playlist-item " id="item-1"><a href="" class="focusable "> Playlist 1</a></li>
                                         <li class="navigation__nav-list-item playlist-item focusable" id="item-2">Playlist 2</li>
-                                        <li class="navigation__nav-list-item playlist-item focusable" id="item-3">Playlist 3</li>
+                                        <li class="navigation__nav-list-item playlist-item focusable" id="item-3">Playlist 3</li>-->
                             <!--mettre du regex pour les div item des playlists-->
 
                         </ul>

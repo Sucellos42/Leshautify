@@ -1,16 +1,14 @@
 <?php
-require '../functions/autoIncludeClasses.inc.php';
 session_start();
-
-
-$data = trim(file_get_contents('php://input'));
-$decoded = json_decode($data, true);
-
-$playlist_name = $decoded['playlist_name'];
-
-
-
-
+require ('../functions/autoIncludeClasses.inc.php');
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Playlist.php';
+$user_id = $_SESSION['id'];
 $playlist = new Playlist();
+$playlist = $playlist->getPlaylist($user_id);
+try {
+    echo json_encode($playlist, JSON_THROW_ON_ERROR);
+} catch (JsonException $e) {
+    die ($e->getMessage());
+}
 
 

@@ -1,9 +1,11 @@
 <?php
+session_start();
 require ($_SERVER['DOCUMENT_ROOT'] . '/back-end/php/login.php');
+var_dump($_SESSION);
 //on veut ici que quand l'user va sur loginForm.php il soit directement redirigé vers le dashboard
 //on verifie donc si il est connecté
-//require '../../back-end/php/auth.php';
-//userConnected();
+/*require '../../back-end/php/auth.php';
+userConnected();*/
 
 require('headerForm.php');
 ?>

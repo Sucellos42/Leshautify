@@ -5,6 +5,10 @@ include_once('../functions/functions.php');
 //header('Content-Type: application/json');
 
 $recent = new Recent();
-$recent->checkRecent();
-echo json_encode($recent);
+$result = $recent->checkRecent();
+try {
+    echo json_encode($recent, JSON_THROW_ON_ERROR);
+} catch (JsonException $e) {
+    die($e->getMessage());
+}
 

@@ -1,5 +1,8 @@
 <?php
 require_once('../../back-end/functions/autoIncludeClasses.inc.php');
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR .'UserLogin.class.php';
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Dbh.class.php';
+
 //vérification des informations de login
 
 $email = (string)$_POST['email'];

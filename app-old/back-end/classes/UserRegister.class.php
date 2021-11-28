@@ -20,29 +20,27 @@ class UserRegister extends Dbh
      * @param string $email
      * @return bool
      */
-    public function userCheckMail () {
+    public function userCheckMail ($email) {
 
 //        $sql_email = "SELECT pseudo, email FROM user WHERE email = :email";
-        $sql_email = "select email from user";
+        $sql_email = "select email from user where email = :email";
         $stmt_mail = $this->connection->prepare($sql_email);
-//        $stmt_mail->bindParam(':email', $email);
+        $stmt_mail->bindParam(':email', $email);
         $stmt_mail->execute();
-        $var = $stmt_mail->fetchAll();
+        $var = $stmt_mail->fetch();
+        return $var;
 
         //empty regarde si la variable est vide
         //donc ici return true si fetch contient quelque chose et false si var est vide
 //        return !empty($var);
 
     }
-
-
-
-    /**
+/*    /**
      * retourne true si il y'a un pseudo correspondant
      * @param string $pseudo
      * @return bool
      */
-    private function userCheckPseudo (string $pseudo) :bool {
+    /*private function userCheckPseudo (string $pseudo) :bool {
 
         $sql_pseudo = "SELECT pseudo FROM user WHERE pseudo = :pseudo";
         $stmt_pseudo = $this->connection->prepare($sql_pseudo);
@@ -52,9 +50,7 @@ class UserRegister extends Dbh
 
         return !empty($var);
 
-    }
-
-
+    }*/
     /**
      *insert les données du formulaire en bdd
      * @param $first_name
@@ -62,18 +58,14 @@ class UserRegister extends Dbh
      * @param $mail
      * @param $pseudo
      * @param $password
-     *
-     *
      */
     public function insertToDB($first_name, $last_name, $mail, $pseudo, $password)
-
     {
         $this->userCheckMail($mail);
-        $this->userCheckPseudo($pseudo);
 
         $sql = 'INSERT INTO user (first_name, last_name, pseudo, email, password) VALUES (:first_name, :last_name, :pseudo, :email, :password)';
-
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        //on hash le password et pour plus sécuriser on met cost à 12 qui sera un temps de reponse pour vérifier le mot de passe
+        $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
 
         //try catch
         try {
@@ -85,12 +77,10 @@ class UserRegister extends Dbh
 
             $stmt->bindParam(':password', $password);
             $stmt->execute();
+            return true;
+
         } catch ( Exception $e) {
             die ($e->getMessage());
         }
-
-
     }
-
-
 }

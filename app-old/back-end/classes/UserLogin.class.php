@@ -1,5 +1,5 @@
 <?php
-
+include_once('../functions/autoIncludeClasses.inc.php');
 
 class UserLogin extends Dbh {
     private $connection;
@@ -7,7 +7,7 @@ class UserLogin extends Dbh {
 
 
 
-    function __construct()
+    public function __construct()
     {
         $this->connection = $this->connect();
     }
@@ -16,7 +16,7 @@ class UserLogin extends Dbh {
      *
      * @param string $email
      * @param string $password
-     * @return false|mixed
+     * @return mixed
      */
     public function userCheckAuth (string $email, string $password): mixed
     {
@@ -29,7 +29,9 @@ class UserLogin extends Dbh {
         $verif = password_verify($password, $password_hash);
         if ($verif) {
             return $result;
-        } else return false;
+        }
+
+        return false;
 
     }
 

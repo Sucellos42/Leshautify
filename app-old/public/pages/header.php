@@ -1,4 +1,9 @@
-<?php ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    //si elle n'existe pas on la démarre
+    session_start();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="fr">

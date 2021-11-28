@@ -24,8 +24,7 @@ class NewRecent extends Dbh {
      * si il existe on renvoie l'id de l'artiste
      * ou false s'il y a deja un artiste qui existe en bdd
      * @param $artist_name
-     * @return string|bool
-     *
+     * @return string
      */
     public function insertInArtist($artist_name): string
     {
@@ -42,7 +41,9 @@ class NewRecent extends Dbh {
             $stmt->execute();
             return $this->connection->lastInsertId();
 
-        } else return false ;
+        }
+
+        return false;
 
         //je récupère mon dernier id
 //        return $this->connection->lastInsertId();
@@ -71,10 +72,10 @@ class NewRecent extends Dbh {
      * (on aurait pu utiliser insert album mais j'arrive pas a renvoyer false pour générer une erreur qui sera fetch en js
      * si l'artiste existe deja et qu'on renvoie son id
      *
-     * @param $artist_name
+     * @param string $artist_name
      * @return string $id_artist
      */
-    public function selectIdArtist (string $artist_name)
+    public function selectIdArtist (string $artist_name): string
     {
         $sql_exist = "SELECT id_artist from artist WHERE artist_name = :artist_name";
         $stmt_exist = $this->connection->prepare($sql_exist);
@@ -86,11 +87,11 @@ class NewRecent extends Dbh {
     }
 
 
-
     /**
      * On insert dans la table d'association l'id de l'artist et l'id de l'album correspondant
-     * @param $id_artist
-     * @param $id_album
+     * @param string $album_title
+     * @param string $artist_name
+     * @return bool|void
      */
     public function associateArtistAlbum(string $album_title, string $artist_name)
     {
@@ -118,7 +119,6 @@ class NewRecent extends Dbh {
             return true;
         } catch(Exception $e) {
             die('Erreur: ' . $e->getMessage()) ;
-            return false;
         }
     }
 }

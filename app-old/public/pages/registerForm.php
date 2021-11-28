@@ -1,4 +1,14 @@
-<?php include 'headerForm.php'?>
+<?php
+session_start();
+require '../../back-end/php/auth.php';
+if (isConnect()) {
+    header('Location: /index.php');
+}
+var_dump($_SESSION);
+
+
+
+include 'headerForm.php'?>
 
 <div class="container">
     <div class="row">

@@ -15,24 +15,28 @@ class Playlist extends Dbh
     }
 
 
-    public function getPlaylist($user_id)
+    public function getPlaylist($user_id): bool|array
     {
         $sql = "SELECT id_playlist from playlist where user_id = :user_id";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetch();
     }
 
 
     function insertPlaylist($user_id, $playlist_name)
     {
-        $sql = "INSERT into playlist (list_name, user_id) values (:user_id, :playlist_name)";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->bindParam(':playlist_name', $playlist_name);
-        $stmt->execute();
-
+        try {
+            $sql = "INSERT into playlist (list_name, user_id) values (:user_id, :playlist_name)";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':user_id', $user_id);
+            $stmt->bindParam(':playlist_name', $playlist_name);
+            $stmt->execute();
+        }
+        catch ( Exception $e) {
+            die ($e->getMessage());
+        }
 
     }
 

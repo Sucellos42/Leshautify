@@ -27,19 +27,18 @@ class Recent extends Dbh {
         $this->connection = $this->connect();
     }
 
-    public function checkRecent() {
+    public function checkRecent(): void
+    {
         try {
             //je définis mes requêtes sql
             $sqlRecentArtist = "SELECT artist_name from artist order by id_artist desc ";
             $sqlRecentAlbum = "SELECT album_title from album order by id_album desc ";
 
             //prepare et éxecute les réquêtes sql pour trouver les 6 premiers artistes
-            $resultArtist = $this->connection->prepare($sqlRecentArtist);
-            $resultArtist->execute();
+            $resultArtist = $this->connection->query($sqlRecentArtist);
             $this->recentArtist = $resultArtist->fetchAll();
 
-            $recentAlbum = $this->connection->prepare($sqlRecentAlbum);
-            $recentAlbum->execute();
+            $recentAlbum = $this->connection->query($sqlRecentAlbum);
             $this->recentAlbum = $recentAlbum->fetchAll();
 
 

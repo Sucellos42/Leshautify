@@ -14,7 +14,7 @@ ou
 
 on verra plus tard si il est possible de faire la requête une fois qu'on recharge la page et garder les elements dans le dom sans qu'il soit en base donnée pour l'instant*/
 
-/*fetch('back-end/php/displayPlaylist.php')
+/*fetch('back-end/php.php')
     .then(json => json.json())
     .then(playlist => {
         console.log(playlist)
@@ -26,9 +26,13 @@ let playlist = []
 let newPlaylistTab = []
 
 
-
+displayPlaylist()
 function displayPlaylist (playlistName){
-
+    fetch('back-end/php/getPlaylistUser.php')
+        .then(response => response.json())
+        .then(playlist => {
+            console.log(playlist)
+        })
 }
 
 /*
@@ -56,7 +60,6 @@ function createPlaylistInput () {
     addPlaylistBtn.addEventListener('click', () => {
 
 
-
         i++
         const newPlaylist = new CreateNewTag('li', 'class', 'navigation__nav-list-item playlist-item focusable', '.navigation__nav-list')
         const id = 'nav-list-item-' + i
@@ -81,30 +84,26 @@ function createPlaylistInput () {
             newPlaylistTab.push({
                 playlist_name: content
             })
-            fetch('./back-end/php/displayPlaylist.php', {
-                header: {
-                    method: 'POST',
-                    'Contetn-Type': 'application/json'
+            fetch('./back-end/php/insertRecent.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newPlaylistTab)
             })
-                .then(json => json.json())
-                .then( e => {
-
+                .then(e => e.json())
+                .then(e => {
+                    console.log(e)
                 })
 
-            console.log(newPlaylistTab)
+
         })
-
-
-
     })
-
 }
 
-function createPlaylist (name) {
+/*function createPlaylist (name) {
 
-}
+}*/
 
 //function onhover element playlist qui affiche clic droit pour editer ou supprimer
 
@@ -114,6 +113,6 @@ function createPlaylist (name) {
 //pour chaque element editable on créera une fonction qui selectionnera tout le champ et mettre une bordure noire
 
 //1 on selection tous les élement editable
-var div = document.querySelectorAll('editable')
+
 
 //2
