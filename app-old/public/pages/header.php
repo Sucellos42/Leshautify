@@ -22,6 +22,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="public/JS/createTag.js" defer></script>
     <script defer src="public/JS/displayRecent.js"></script>
     <script defer src="public/JS/recentModal.js"></script>
-    <script src="public/JS/addPlaylist.js" defer></script>
+    <script src="public/JS/playlist.js" defer></script>
+    <script src="public/JS/redirect.js" defer></script>
 </head>
 <body>

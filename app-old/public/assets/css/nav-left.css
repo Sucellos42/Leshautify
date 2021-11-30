@@ -199,6 +199,7 @@
                     .navigation__nav-list-item{
                         font-size: 1em ;
                         display: flex;
+                        cursor: pointer;
                     }
                         .navigation__nav-list-item > input {
                             background-color: rgba(0, 0, 0, 0.12);

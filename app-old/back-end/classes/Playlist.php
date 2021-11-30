@@ -1,5 +1,5 @@
 <?php
-include_once('../functions/autoIncludeClasses.inc.php');
+
 
 
 /**
@@ -8,6 +8,7 @@ include_once('../functions/autoIncludeClasses.inc.php');
 class Playlist extends Dbh
 {
     private $connection;
+    public $playlist;
 
     public function __construct()
     {
@@ -15,13 +16,13 @@ class Playlist extends Dbh
     }
 
 
-    public function getPlaylist($user_id): bool|array
+    public function getPlaylist($user_id): void
     {
-        $sql = "SELECT id_playlist from playlist where user_id = :user_id";
+        $sql = "SELECT * from playlist where user_id = :user_id";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
-        return $stmt->fetch();
+        $this->playlist = $stmt->fetchAll();
     }
 
 

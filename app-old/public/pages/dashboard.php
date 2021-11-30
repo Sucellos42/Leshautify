@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     //si elle n'existe pas on la démarre
     session_start();
 }
+
 var_dump($_SESSION);
 
 
@@ -58,10 +59,10 @@ require_once 'header.php';
                                 Bibliothèque
                             </div>
                             <hr class="spacer">
-                            <li class="navigation__nav-list-item" id="track_item">Morceaux</li>
-                            <li class="navigation__nav-list-item" id="artist_item">Artistes</li>
-                            <li class="navigation__nav-list-item" id="album_item">Albums</li>
-                            <li class="navigation__nav-list-item" id="recent_item">Ajouts récents</li>
+                            <li class="navigation__nav-list-item track_item" id="track_item"><span >Morceaux</span></li>
+                            <li class="navigation__nav-list-item artist_item" id="artist_item"><span >Artistes</span></li>
+                            <li class="navigation__nav-list-item album_item" id="album_item"><span >Albums</span></li>
+                            <li class="navigation__nav-list-item recent_item" id="recent_item"><span >Ajouts récents</span></li>
                         </ul>
                     </div>
 

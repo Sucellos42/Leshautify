@@ -1,6 +1,5 @@
 <?php
-include_once('Dbh.class.php');
-include_once('../functions/functions.php');
+
 
 // On veut récupérer manuellement les derniers albums et derniers artistes ajoutés
 // Pour ça on veut faire une requếte qui regardera les 8 derniers album et 8 dernier artistes ajoutée
@@ -19,26 +18,39 @@ include_once('../functions/functions.php');
 
 class Recent extends Dbh {
     private $connection;
-    public $recentAlbum;
-    public $recentArtist;
+    public array|false $recentArtist;
+    public array|false $recentAlbum;
 
 
     public function __construct() {
         $this->connection = $this->connect();
     }
 
-    public function checkRecent(): void
+    public function checkRecent($user_id): void
     {
         try {
             //je définis mes requêtes sql
-            $sqlRecentArtist = "SELECT artist_name from artist order by id_artist desc ";
-            $sqlRecentAlbum = "SELECT album_title from album order by id_album desc ";
+            $sqlRecentAlbum = "SELECT album.album_title, album_artist.album_id, album.id_album, album_artist.user_id as user_id 
+                                FROM album 
+                                JOIN album_artist on album_artist.album_id = album.id_album 
+                                WHERE user_id = :user_id
+                                ORDER BY album_id DESC ";
+
+            $sqlRecentArtist = "SELECT artist.artist_name, album_artist.artist_id, artist.id_artist, album_artist.user_id as user_id 
+                                FROM artist 
+                                JOIN album_artist on album_artist.artist_id = artist.id_artist
+                                WHERE user_id = :user_id
+                                ORDER BY artist_id DESC ";
 
             //prepare et éxecute les réquêtes sql pour trouver les 6 premiers artistes
-            $resultArtist = $this->connection->query($sqlRecentArtist);
-            $this->recentArtist = $resultArtist->fetchAll();
+            $recentArtist = $this->connection->prepare($sqlRecentArtist);
+            $recentArtist->bindParam(':user_id', $user_id);
+            $recentArtist->execute();
+            $this->recentArtist = $recentArtist->fetchAll();
 
-            $recentAlbum = $this->connection->query($sqlRecentAlbum);
+            $recentAlbum = $this->connection->prepare($sqlRecentAlbum);
+            $recentAlbum->bindParam(':user_id', $user_id);
+            $recentAlbum->execute();
             $this->recentAlbum = $recentAlbum->fetchAll();
 
 
@@ -47,6 +59,7 @@ class Recent extends Dbh {
         }
     }
 }
+
 
 
 

@@ -24,7 +24,9 @@ fetch('./back-end/php/displayRecent.php')
         displayArtsist(recent.recentArtist);
         displayAlbum(recent.recentAlbum, recent.recentArtist);
         recentArtist = recent.recentArtist
+        recentAlbum = recent.recentAlbum
         console.log(recentArtist)
+
 
         console.log(performance.now() + 'fetch')
         // console.log(buez.recentArtist)

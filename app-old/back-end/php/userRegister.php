@@ -1,5 +1,6 @@
 <?php
 include_once('../functions/autoIncludeClasses.inc.php');
+include_once('../functions/functions.php');
 
 
 //on récuprère les input du formulaire
@@ -17,7 +18,7 @@ $confirm_password = (string) $_POST['confirm-password'];
 $user = new UserRegister();
 //insertion en base
 $result = $user->insertToDB($first_name, $last_name, $email, $pseudo, $password);
-if (!$result) {
+if ($result) {
     header('Location: ../../public/pages/loginForm.php');
 } else {
     return false;

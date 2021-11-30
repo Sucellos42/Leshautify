@@ -38,7 +38,7 @@ function createModal(modal_title) {
  * appelée dans displayArtist dans le fichier displayRecent
  * @param modal_title
  */
-function modalArtistContent(modal_title, artist_name) {
+function modalArtistContent(modal_title) {
     const ASIDE = createModal(modal_title)
     const modalForm = new CreateNewTag('form', 'method', 'POST', '.modal-wrapper')
     modalForm.action = './back-end/php/insertRecent.php'
@@ -48,9 +48,16 @@ function modalArtistContent(modal_title, artist_name) {
     modalTitle.innerText = modal_title
     const input = new CreateNewTag('input', 'type', 'text', '.modalForm')
     input.className = 'modalInput'
+    const input2 = new CreateNewTag('input', 'type', 'text', '.modalForm')
+    input.className = 'modalInput'
     // input.setAttribute('required', '')
     input.name = 'new-artist'
     input.type = 'text'
+    input.placeholder = 'Artiste'
+
+    input2.name = 'new-album'
+    input2.type = 'text'
+    input2.placeholder = 'Album'
 
 
 
@@ -68,7 +75,7 @@ function modalArtistContent(modal_title, artist_name) {
         const php = {
             artist: input.value,
             btn_name: 'artist',
-            album: ''
+            album: input2.value
         }
         fetch('./back-end/php/insertRecent.php', {
             method: 'POST',
@@ -110,7 +117,8 @@ function modalArtistContent(modal_title, artist_name) {
                     )*/
     })
     modalCloseBtn.addEventListener(('click'), e => {
-        e.location.reload()
+        ASIDE.remove()
+
     })
 }
 
@@ -148,6 +156,8 @@ function modalAlbumContent(modal_title, tab) {
         row.className = 'artist-selec-row'
         row.innerText = e.artist_name
     })
+    const rowStand = new CreateNewTag('option', 'value', `Ajouter un artiste...`, '.artists-select')
+    rowStand.innerText = 'Ajouter un artiste'
 
     const btnContainer = new CreateNewTag('div', 'class', 'btnContainer', '.modalForm')
     const modalBtn = new CreateNewTag('button', 'type', 'submit', '.btnContainer')
