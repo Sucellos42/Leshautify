@@ -102,6 +102,7 @@ function createPlaylist () {
                 playlist_name: content
             })
             console.log(newPlaylistTab)
+
             //une fois le content ajouté on fetch pour envoyé a php
     })
 })
