@@ -4,8 +4,8 @@
 //function pour debug une var propre
 //inclue dans le header
 function debug ($var) {
-    echo '<pre>' . print_r($var) . '</pre>';
-    echo '<pre>' . var_dump($var) . '</pre>';
+    echo '<pre>' . print_r($var) . 'printr' . '</pre>';
+    echo '<pre>' . var_dump($var) . "vardump" . '</pre>';
 }
 
 /**

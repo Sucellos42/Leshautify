@@ -26,7 +26,7 @@ class Playlist extends Dbh
     }
 
 
-    function insertPlaylist($user_id, $playlist_name)
+    public function insertPlaylist($user_id, $playlist_name): void
     {
         try {
             $sql = "INSERT into playlist (list_name, user_id) values (:user_id, :playlist_name)";

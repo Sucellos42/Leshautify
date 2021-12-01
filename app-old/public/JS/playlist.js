@@ -14,25 +14,33 @@ ou
 
 on verra plus tard si il est possible de faire la requête une fois qu'on recharge la page et garder les elements dans le dom sans qu'il soit en base donnée pour l'instant*/
 
-/*fetch('back-end/php.php')
-    .then(json => json.json())
-    .then(playlist => {
-        console.log(playlist)
-        console.log(performance.now() + 'fetch')
-        // console.log(buez.recentArtist)
-    })*/
+
+//Je fetch de php quand je charge la page
+
+//Je fetch vers php l'insert a chaque fois que j'ai finit l'insert aprtès le on change
+
+
 //playlist sera les playlist que seront fetch
 let playlist = []
 let newPlaylistTab = []
 
+
 fetch('./back-end/php/displayPlaylistUser.php')
     .then(response => response.json())
     .then(data => {
+        displayPlaylists(data.playlist)
         //on récupère le tableau json de playlist et on le push dans playlist
         // window.toto = JSON.parse(JSON.stringify(data)) ---> sauvegarde copie de l'objet json (comme data.objet)
-})      /*array.forEach( e => {
+})
+    .then(() => {
+        removeRightNav()
+        displayPlaylistPage(removeRightNav())
+        console.log(performance.now() + 'then')
+    })
+    .then(() => {
+        //creer la page qui a pour titre le nom de ce sur quoi on a cliqué
 
-})*/
+    })
 
 
 
@@ -49,7 +57,7 @@ onFocus()
 
 }
 */
-displayPlaylists(newPlaylistTab)
+
 function displayPlaylists (playlists)  {
 
     playlists.forEach(playlist => {
@@ -57,11 +65,12 @@ function displayPlaylists (playlists)  {
         i++
         const newPlaylist = new CreateNewTag('li', 'class', 'navigation__nav-list-item playlist-item focusable', '.navigation__nav-list')
         const id = 'nav-list-item-' + i
+        newPlaylist.id = id
         const playlistLink = new CreateNewTag('a', 'href', '#', `#${id}`)
-        playlistLink.innerText = playlist['playlist_name']
-        playlistLink.className = 'playlist-link'
-
+        playlistLink.innerText = playlist['list_name']
+        playlistLink.className = 'playlist-link deleteRightNav playlistPage'
     })
+
 }
 
 
@@ -72,6 +81,7 @@ function displayPlaylists (playlists)  {
 createPlaylist()
 function createPlaylist () {
     //définir i en fonction du nombre de row dans le tableau de playlist
+    // let i = playlist.length
     let i = 0
 
     const addPlaylistBtn = document.querySelector('#new-playlist-button');
@@ -94,19 +104,41 @@ function createPlaylist () {
 
             //on met le contenu de l'input dans la balise a
             playlistLink.innerText = content
-            playlistLink.className = 'playlist-link'
+            playlistLink.className = 'playlist-link deleteRightNav playlistPage'
             //supprime la balise input
             toRemove.remove()
             //on met dans le tableau associatif newplaylist chaque playlist ajouté
             newPlaylistTab.push({
                 playlist_name: content
             })
-            console.log(newPlaylistTab)
+            const playlist = {
+                playlist_name: content
+            }
+            //on fetch vers php les informations de l'input
+            fetch('./back-end/php/insertPlaylist.php', {
+                method: 'POST',
+                header: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify(playlist)
+            })
+                .then(response => response.json)
+                .then(() => {
+                    removeRightNav()
+                })
+
+
+            console.log(content.length)
+
+            console.log(newPlaylistTab.length)
 
             //une fois le content ajouté on fetch pour envoyé a php
     })
 })
 }
+
+
+
 
 /*function createPlaylist (name) {
 

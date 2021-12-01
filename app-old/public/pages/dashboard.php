@@ -59,10 +59,10 @@ require_once 'header.php';
                                 Bibliothèque
                             </div>
                             <hr class="spacer">
-                            <li class="navigation__nav-list-item track_item" id="track_item"><span >Morceaux</span></li>
-                            <li class="navigation__nav-list-item artist_item" id="artist_item"><span >Artistes</span></li>
-                            <li class="navigation__nav-list-item album_item" id="album_item"><span >Albums</span></li>
-                            <li class="navigation__nav-list-item recent_item" id="recent_item"><span >Ajouts récents</span></li>
+                            <li class="navigation__nav-list-item track_item" id="track_item"><span class="deleteRightNav">Morceaux</span></li>
+                            <li class="navigation__nav-list-item artist_item" id="artist_item"><span class="deleteRightNav">Artistes</span></li>
+                            <li class="navigation__nav-list-item album_item" id="album_item"><span class="deleteRightNav">Albums</span></li>
+                            <li class="navigation__nav-list-item recent_item" id="recent_item"><span class="deleteRightNav">Ajouts récents</span></li>
                         </ul>
                     </div>
 
