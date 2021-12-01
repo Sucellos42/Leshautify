@@ -34,7 +34,6 @@ fetch('./back-end/php/displayPlaylistUser.php')
 })
     .then(() => {
         removeRightNav()
-        displayPlaylistPage(removeRightNav())
         console.log(performance.now() + 'then')
     })
     .then(() => {
@@ -81,8 +80,8 @@ function displayPlaylists (playlists)  {
 createPlaylist()
 function createPlaylist () {
     //définir i en fonction du nombre de row dans le tableau de playlist
-    // let i = playlist.length
-    let i = 0
+    let i = playlist.length
+    // let i = 0
 
     const addPlaylistBtn = document.querySelector('#new-playlist-button');
     addPlaylistBtn.addEventListener('click', () => {
@@ -114,6 +113,8 @@ function createPlaylist () {
             const playlist = {
                 playlist_name: content
             }
+
+            console.log(playlist)
             //on fetch vers php les informations de l'input
             fetch('./back-end/php/insertPlaylist.php', {
                 method: 'POST',

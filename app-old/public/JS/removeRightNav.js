@@ -1,6 +1,6 @@
 function removeRightNav() {
     const playlistLinks = document.querySelectorAll('.deleteRightNav')
-    const toRemove = document.querySelector('.navigation-right')
+    const toRemove = document.querySelector('.container > :nth-child(2) ')
     playlistLinks.forEach(link => {
         const content = link.textContent
         link.addEventListener('click', e => {
@@ -11,8 +11,6 @@ function removeRightNav() {
             removeAllChildNodes(toRemove)
             console.log(playlistName + ' : good')
             displayPlaylistPage(playlistName)
-
-
         })
     })
 }
@@ -23,13 +21,13 @@ function removeAllChildNodes(parent) {
         console.log(performance.now() + 'remove')
     }
 }
+/*
 
 function displayPlaylistPage(playlistName) {
     const playlistsLinks = document.querySelectorAll('.playlistPage')
     playlistsLinks.forEach(playlist => {
         playlist.addEventListener('click', playlist => {
             console.log(performance.now() + 'display')
-
         })
     })
-}
+}*/

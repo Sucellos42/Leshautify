@@ -117,7 +117,7 @@
 /*        background-color: yellow;*/
         height: 100vh;
         display: grid;
-        grid-template-columns: 230px 1fr ;
+        grid-template-columns: 24vw 1fr ;
         grid-gap: 0;
     }
 

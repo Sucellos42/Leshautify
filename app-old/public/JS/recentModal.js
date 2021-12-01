@@ -116,10 +116,9 @@ function modalArtistContent(modal_title) {
                         () => closeMODAL
                     )*/
     })
-    modalCloseBtn.addEventListener(('click'), e => {
+/*    modalCloseBtn.addEventListener(('click'), e => {
         ASIDE.remove()
-
-    })
+    })*/
 }
 
 
