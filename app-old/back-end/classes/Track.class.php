@@ -16,9 +16,21 @@ class Track extends Dbh {
         $sql = "SELECT * from user";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetchAll();
-        return $result;
+        return $stmt->fetchAll();
     }
 
+    //on veut insérer en base de donnée la track
+    //on regarde si l'association existe dans la base donnée a la table album_artist
+    public function insertTrack($user_id, $track_name, $album_title, $artist_name, $track_length): void
+    {
+
+    }
+
+
+
+}
+
+
+    public function checkAssociationAlbumArtist() {
 
 }

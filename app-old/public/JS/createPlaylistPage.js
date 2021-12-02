@@ -94,6 +94,12 @@ function createSongRow (){
             toRemove.remove()
             //dès qu'on a fait tous les input donc 4 on fetch
             if (count === 4) {
+                let playlist_title = document.querySelector('#playlist-title')
+                playlist_title = playlist_title.innerText
+                playlist_title = {
+                    playlist_title: playlist_title
+                }
+                playlistsRows.push(playlist_title)
                 fetch('./back-end/php/insertTrack.php', {
                     method: 'POST',
                     header: {
