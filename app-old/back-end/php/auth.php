@@ -11,11 +11,6 @@ function isConnect(): bool {
 }
 
 
-function userConnected (): void {
-    if(!isConnect()){
-        header('Location: public/pages/loginForm.php');
-
-
 function userConnected(): void {
     if(!isConnect()) {
         header('Location: ../../public/pages/loginForm.php');
