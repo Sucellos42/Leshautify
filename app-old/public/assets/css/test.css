@@ -1,0 +1,32 @@
+*, *::before,*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20rem;
+    background: #0d0d4b;
+    height: 20rem;
+
+}
+
+.form__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+

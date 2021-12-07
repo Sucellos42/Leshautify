@@ -2,9 +2,24 @@
 
 
 .navigation-right{
+    min-height: 100vh;
     display: grid;
     grid-template-rows: 60px 35vh 1fr;
 
+}
+
+/*header*/
+.header{
+    display: flex;
+
+}
+.logout{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    align-self: flex-end;
+    height: 45px;
+    width: 45px;
 }
 
 
