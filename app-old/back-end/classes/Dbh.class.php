@@ -9,7 +9,6 @@ class Dbh {
 
     public function connect () {
         try {
-
             //se connecter à mysql
             $pdo = new PDO ("mysql:host=$this->db_host; dbname=$this->db_name", $this->db_user, $this->db_password );
             //g compri (merci Nicolas)
@@ -22,6 +21,4 @@ class Dbh {
         }
         return $pdo;
     }
-
-
 }

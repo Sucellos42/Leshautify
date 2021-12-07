@@ -1,0 +1,13 @@
+.hidden {
+    display: none;
+}
+
+.playlist-link {
+    text-decoration: none;
+    color: whitesmoke;
+    margin: auto auto auto 0;
+    padding-left: 0.4rem;
+    letter-spacing: 0.08rem;
+}
+
+

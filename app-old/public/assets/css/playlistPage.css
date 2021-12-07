@@ -1,0 +1,34 @@
+
+
+.navigation-playlist  {
+    background-color: #1F1F1F;
+}
+
+    #playlist-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /*width: 100%;*/
+    }
+
+        #header-playlist-page{
+            background-color: green;
+            height: 30vh;
+            width: 100%;
+            padding: 50px;
+        }
+            .addSong {
+                width: 240px;
+            }
+
+        #playlist-song-container {
+            background-color: #0a53be;
+            height: 70vh;
+            padding: 50px;
+            width: 100%;
+            overflow: auto;
+        }
+
+
+

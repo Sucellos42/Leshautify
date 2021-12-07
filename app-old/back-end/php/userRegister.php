@@ -1,25 +1,27 @@
 <?php
+session_start();
 include_once('../functions/autoIncludeClasses.inc.php');
+include_once('../functions/functions.php');
+
+//if isset()
 
 
 //on récuprère les input du formulaire
 // on doit sanitize les input $_POST
-$email = (string) $_POST['email'];
-$first_name = (string) $_POST['first_name'];
-$last_name = (string) $_POST['last_name'];
-$pseudo = (string) $_POST['username'];
-$password = (string) $_POST['password'];
-$confirm_password = (string) $_POST['confirm-password'];
+$email =  sanitize_email($_POST['email']);
+$first_name =  sanitizeInput($_POST['first_name']);
+$last_name =  sanitizeInput($_POST['last_name']);
+$password =  strip_tags($_POST['password']);
+$confirm_password =  strip_tags($_POST['confirm-password']);
 
 
-//cration nouvel objet UserRegister
+//création nouvel objet UserRegister
 $user = new UserRegister();
 //insertion en base
-$result = $user->insertToDB($first_name, $last_name, $email, $pseudo, $password);
-if (!$result) {
-    echo('<script>alert("Register successfull")</script>');
+$result = $user->insertToDB($first_name, $last_name, $email, $password);
+if ($result) {
     header('Location: ../../public/pages/loginForm.php');
 } else {
-    return false;
-
+    $_SESSION['messages'] = "L'email existe déjà";
+    header('Location: ../../public/pages/registerForm.php');
 }

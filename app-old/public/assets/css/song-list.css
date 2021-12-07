@@ -1,6 +1,70 @@
 
 
-.song-list{
-    background-color: #0a53be;
+
+/*******************header and placeholder **********/
+*,*::before,*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+
+/* est égal input */
+.song-list__row-input {
+
+}
+/*=placeholder*/
+.song-placeholder-title {
+
+}
+
+.song-list__row-input:focus + .song-placeholder-title {
+
+}
+
+
+
+/******************************************************/
+.song-list {
+    display: flex;
+    background: rgba(60,60,60,0.95);
+    flex-direction: column;
+}
+
+.song-list__row{
+    display: flex;
+    flex-direction: row;
+}
+.song-list__row {
+    list-style: none;
+}
+
+.rowContainer {
+    overflow: hidden;
+    background-color: rgba(31,31,31,0.91);
+    width: 25%;
+    margin: 10px;
+}
+/*.rowContainer > input {
+    background-color: #00AA88;
+    height: 100%;
+    width: 100%;
+}*/
+
+
+
+@media screen and (max-width: 788px) {
+    #row-length {
+        display: none;
+    }
+    #row-album {
+        display: none;
+    }
+}
+
+
+
+
+
+
 
