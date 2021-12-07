@@ -26,7 +26,7 @@ class Playlist extends Dbh
     }
 
 
-    public function insertPlaylist($user_id, $playlist_name): void
+    public function insertPlaylist($user_id, $playlist_name): bool
     {
         try {
             $sql = "INSERT into playlist (list_name, user_id) values (:user_id, :playlist_name)";
@@ -34,11 +34,21 @@ class Playlist extends Dbh
             $stmt->bindParam(':user_id', $user_id);
             $stmt->bindParam(':playlist_name', $playlist_name);
             $stmt->execute();
+            return $this->connection->lastInsertId();
         }
         catch ( Exception $e) {
-            die ($e->getMessage());
+            return false;
         }
 
+    }
+
+    public function getPLaylistId ($playlist_name, $user_id) {
+        $sql = "SELECT id_playlist FROM playlist where list_name = :playlist_name";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':playlist_name', $playlist_name);
+        $stmt->bindParam(':', $user_id);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
 }

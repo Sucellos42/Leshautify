@@ -14,6 +14,17 @@
     --main-orange: #e87934;
 }
 
+.burger {
+    display: none;
+}
+/****************cacher le menu gauche ****************/
+/*@media screen and (max-width: 1000px) {
+    .navigation-left{
+        display: none;
+    }
+
+}*/
+
 
 
     #add-playlist__section{
@@ -115,9 +126,9 @@
 
     .container {
 /*        background-color: yellow;*/
-        height: 100vh;
+        height: 100%;
         display: grid;
-        grid-template-columns: 24vw 1fr ;
+        grid-template-columns: 240px 1fr ;
         grid-gap: 0;
     }
 

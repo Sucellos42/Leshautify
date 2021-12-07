@@ -85,31 +85,19 @@ function createPlaylist () {
 
     const addPlaylistBtn = document.querySelector('#new-playlist-button');
     addPlaylistBtn.addEventListener('click', () => {
+
         i++
         const newPlaylist = new CreateNewTag('li', 'class', 'navigation__nav-list-item playlist-item focusable', '.navigation__nav-list')
         const id = 'nav-list-item-' + i
         newPlaylist.id = id
         const newPlaylistField = new CreateNewTag('input', 'type', 'text', `#${id}`)
+        newPlaylistField.setAttribute = ('required', "")
         newPlaylistField.className = 'toremove'
+        newPlaylistField.focus()
         //quand on change le focus sur l'input
         newPlaylistField.addEventListener('change', e => {
             console.log(e.target.value + " Valeur de l\'input")
             const content = e.target.value
-            //on supprime l'input
-            const toRemove = document.querySelector(`.toremove`)
-            //création de la balise a
-            const playlistLink = new CreateNewTag('a', 'href', '#', `#${id}`)
-            playlistLink.id = 'playlist-link-' + i
-
-            //on met le contenu de l'input dans la balise a
-            playlistLink.innerText = content
-            playlistLink.className = 'playlist-link deleteRightNav playlistPage'
-            //supprime la balise input
-            toRemove.remove()
-            //on met dans le tableau associatif newplaylist chaque playlist ajouté
-            newPlaylistTab.push({
-                playlist_name: content
-            })
             const playlist = {
                 playlist_name: content
             }
@@ -123,10 +111,35 @@ function createPlaylist () {
                 },
                 body: JSON.stringify(playlist)
             })
-                .then(response => response.json)
+                .then(response => response.json())
+                //si la playlist existe déjà on affiche une alert
+                .then(response => {
+                    if (response.status === 'notok') {
+                        alert(response.erreur)
+                        //sinon on continue le traitement normal
+                    } else {
+                        //on supprime l'input
+                        const toRemove = document.querySelector(`.toremove`)
+                        //création de la balise a
+                        const playlistLink = new CreateNewTag('a', 'href', '#', `#${id}`)
+                        playlistLink.id = 'playlist-link-' + i
+
+                        //on met le contenu de l'input dans la balise a
+                        playlistLink.innerText = content
+                        playlistLink.className = 'playlist-link deleteRightNav playlistPage'
+                        //supprime la balise input
+                        toRemove.remove()
+                        //on met dans le tableau associatif newplaylist chaque playlist ajouté
+                        newPlaylistTab.push({
+                            playlist_name: content
+                        })
+                    }
+                })
                 .then(() => {
                     removeRightNav()
                 })
+
+
 
 
             console.log(content.length)
@@ -138,21 +151,7 @@ function createPlaylist () {
 })
 }
 
+function checkPlaylistName (response) {
 
 
-
-/*function createPlaylist (name) {
-
-}*/
-
-//function onhover element playlist qui affiche clic droit pour editer ou supprimer
-
-
-
-
-//pour chaque element editable on créera une fonction qui selectionnera tout le champ et mettre une bordure noire
-
-//1 on selection tous les élement editable
-
-
-//2
+}

@@ -14,8 +14,7 @@ class Track extends Dbh {
 
     public function getPlaylist (){
         $sql = "SELECT * from user";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
+        $stmt = $this->connection->query($sql);
         return $stmt->fetchAll();
     }
 
@@ -26,11 +25,13 @@ class Track extends Dbh {
 
     }
 
+    function checkAssociation ($artist_name, $album_title) {
+
+    }
+
+
 
 
 }
 
 
-    public function checkAssociationAlbumArtist() {
-
-}

@@ -5,6 +5,7 @@ if (isConnect()) {
     header('Location: /index.php');
 }
 var_dump($_SESSION);
+$erreur = $_SESSION['messages'];
 
 
 
@@ -24,11 +25,18 @@ include 'headerForm.php'?>
                         <label>Last Name</label>
                         <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
                     </div>
-                    <div class="col-12">
+<!--                    <div class="col-12">
                         <label>Username</label>
                         <input type="text" name="username" class="form-control" placeholder="Username">
-                    </div>
+                    </div>-->
                     <div class="col-12">
+                        <?php
+                        if($erreur): ?>
+                            <div class="alert alert-danger">
+                                <?= $erreur ?>
+                                <?php unset($_SESSION['messages']) ?>
+                            </div>
+                        <?php endif ?>
                         <label>E-Mail</label>
                         <input type="email" name="email" class="form-control" placeholder="E-mail" required>
                     </div>

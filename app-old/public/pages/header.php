@@ -25,7 +25,6 @@ if (session_status() === PHP_SESSION_NONE) {
     <script defer src="public/JS/recentModal.js"></script>
     <script src="public/JS/playlist.js" defer></script>
 <!--    <script src="public/JS/openPlaylist.js" defer></script>-->
-    <script src="public/JS/playlistPage.js" defer></script>
     <script src="public/JS/removeRightNav.js" defer></script>
     <script src="public/JS/createPlaylistPage.js" defer></script>
 

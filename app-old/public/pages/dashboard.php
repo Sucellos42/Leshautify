@@ -88,6 +88,9 @@ require_once 'header.php';
 
 
                 </div>
+                <button class="burger">
+                    <span class="bar"></span>
+                </button>
             </nav>
         </div>
         <div class="navigation-right">

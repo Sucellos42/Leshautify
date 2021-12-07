@@ -1,6 +1,9 @@
 <?php
 session_start();
-require ($_SERVER['DOCUMENT_ROOT'] . '/back-end/php/login.php');
+if (isset($_POST['loginButton'])) {
+    require ($_SERVER['DOCUMENT_ROOT'] . '/back-end/php/login.php');
+}
+
 var_dump($_SESSION);
 //on veut ici que quand l'user va sur loginForm.php il soit directement redirigé vers le dashboard
 //on verifie donc si il est connecté
@@ -8,16 +11,20 @@ var_dump($_SESSION);
 userConnected();*/
 
 require('headerForm.php');
-?>
+?><
 <div class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-4">
                     <div class="login-form bg-light mt-4 p-4">
-                        <?php if($erreur): ?>
+                        <?php if($_SESSION['login']): ?>
                         <div class="alert alert-danger">
-                            <?= $erreur ?>
+                            <?= $_SESSION['login'] ?>
                         </div>
-                        <?php endif ?>
+                        <?php
+                            unset($_SESSION['login']);
+                            endif;
+                        ?>
+
                         <form action="" method="POST" class="row g-3">
                             <h4>Welcome Back</h4>
                             <div class="col-12">

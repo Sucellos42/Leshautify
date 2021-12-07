@@ -17,9 +17,21 @@ try {
 $user_id = $_SESSION['id'];
 $playlist_name = $decoded['playlist_name'];
 
-
 $playlist = new Playlist();
-$playlist->insertPlaylist($playlist_name, $user_id);
+$check = $playlist->insertPlaylist($playlist_name, $user_id);
+if (!$check) {
+    $json = [
+        'status' => 'notok',
+        'erreur' => 'La playlist existe déjà'
+    ];
+    echo json_encode($json, JSON_THROW_ON_ERROR);
+} else {
+    $json = [
+        'status' => 'ok'
+
+    ];
+    echo json_encode($json, JSON_THROW_ON_ERROR);
+}
 
 
 
