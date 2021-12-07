@@ -8,13 +8,10 @@ include_once('../functions/autoIncludeClasses.inc.php');
 class UserRegister extends Dbh
 {
     private $connection;
-
     public function __construct()
     {
         $this->connection = $this->connect();
     }
-
-
     /**
      * retourne true si le mail éxiste déjà
      * @param string $email
