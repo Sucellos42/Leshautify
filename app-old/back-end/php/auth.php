@@ -9,19 +9,12 @@ function isConnect(): bool {
     //sinon on renvoie false
     return !empty($_SESSION['id']);
 }
-<<<<<<< HEAD
-//oooooooo
 
-function userConnected (): void {
-    if(!isConnect()){
-        header('Location: public/pages/loginForm.php');
-=======
 
 function userConnected(): void {
     if(!isConnect()) {
         header('Location: ../../public/pages/loginForm.php');
         exit();
->>>>>>> playlistfeature
     }
 }
 
