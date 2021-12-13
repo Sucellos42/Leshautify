@@ -36,7 +36,6 @@ function sanitize_email(string $email) {
     if (!$sanitize_email) {
         $sanitize_email  = filter_var($email, FILTER_SANITIZE_EMAIL);
     }
-
     return $sanitize_email;
 }
 
