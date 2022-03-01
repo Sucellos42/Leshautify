@@ -1,15 +1,15 @@
 ﻿
---------CREATE DATABASE-------
+-- ------CREATE DATABASE-------
 create database leshautify;
 
 
-------- ID bdd leshautify --------
+-- ----- ID bdd leshautify --------
 create user 'admin'@'localhost' identified by 'password';
 grant all privileges on leshautify . * to 'admin'@'localhost';
 FLUSH PRIVILEGES;
 
 
------ tables -----
+-- --- tables -----
 create table user  (
     id int PRIMARY KEY auto_increment not null,
     first_name varchar(255) not null,
@@ -34,7 +34,6 @@ create table album (
     album_title varchar(255) not null,
     album_year int null,
     PRIMARY KEY (id_album)
-
 );
 
 create table artist (
@@ -59,7 +58,7 @@ create table track (
     CONSTRAINT `fk_associate_track_album`
     FOREIGN KEY (album_id)
     REFERENCES album(id_album)
-    on update cascade on delete cascade;
+    on update cascade on delete cascade
 );
 
 -- TABLE D'ASSOCIATION
@@ -75,7 +74,7 @@ create table playlist_track (
 
     CONSTRAINT `fk_associate_playlist_track`
     FOREIGN KEY (track_playlist_id)
-    REFERENCES playlist (playlist_id),
+    REFERENCES playlist (id_playlist),
 
     CONSTRAINT `fk_associate_track_playlist`
     FOREIGN KEY (track_id)
@@ -83,7 +82,7 @@ create table playlist_track (
 
 );
 
---pas beosin de user_track pour l'instant à mettre si on veut faire une fonction d'achat
+-- pas beosin de user_track pour l'instant à mettre si on veut faire une fonction d'achat
 -- create table user_track (
 --     user_id int not null,
 --     track_id int not null,
@@ -121,12 +120,12 @@ create table album_artist(
     CONSTRAINT `fk_associate_artist_album`
     FOREIGN KEY (artist_id)
     REFERENCES artist (id_artist)
-    on update cascade on delete cascade;
+    on update cascade on delete cascade,
 
     CONSTRAINT `fk_associate_album_artist`
     FOREIGN KEY (album_id)
     REFERENCES album (id_album)
-    on update cascade on delete cascade;
+    on update cascade on delete cascade
     
 );
 

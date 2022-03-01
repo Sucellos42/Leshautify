@@ -7,3 +7,6 @@
    2. fct php qui génère le tableau json correspondant
 
 4. Fonction qui ajoute un + si <= 4albums
+
+
+Features

@@ -5,7 +5,10 @@ if (isConnect()) {
     header('Location: /index.php');
 }
 var_dump($_SESSION);
-$erreur = $_SESSION['messages'];
+if ($_SESSION['messages']) {
+    $erreur = $_SESSION['messages'];
+}
+
 
 
 

@@ -15,10 +15,6 @@ function userConnected(): void {
     if(!isConnect()) {
         header('Location: ../../public/pages/loginForm.php');
         exit();
-<<<<<<< HEAD
-=======
-
->>>>>>> 9777994198099688be76fba46c22a4f4757c9b18
     }
 }
 
